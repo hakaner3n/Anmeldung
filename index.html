@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verbindliche Anmeldung – Musikschule Hückelhoven</title>
+</head>
+<body style="margin:0;padding:0;background:#fff">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+#msf,#msf *{all:unset;box-sizing:border-box!important}
+#msf{display:block;max-width:760px;margin:0 auto;padding:0 20px 60px;font-family:'Source Sans 3',sans-serif!important;font-size:16px;color:#2c2c2c;line-height:1.6}
+#msf h1{display:block;text-align:center;font-family:'Playfair Display',serif!important;font-size:2.2rem;font-weight:700;color:#144d57;margin-bottom:10px}
+#msf h2{display:block;font-family:'Playfair Display',serif!important;font-size:1.25rem;font-weight:700;color:#144d57;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #ccd8da}
+#msf p{display:block;margin-bottom:8px;font-size:0.95rem;color:#2c2c2c}
+#msf a{color:#1a5f6a;font-weight:600;text-decoration:underline;cursor:pointer}
+#msf hr{display:block;border:none;border-top:1px solid #ccd8da;margin:28px 0}
+#msf .msf-header{text-align:center;padding:36px 0 24px;border-bottom:2px solid #ccd8da;margin-bottom:24px}
+#msf .msf-header p{color:#666;font-size:1rem}
+#msf .msf-notice{display:block;background:#e8f4f6;border-left:3px solid #1a5f6a;padding:12px 16px;border-radius:0 6px 6px 0;margin-bottom:28px;font-size:0.92rem}
+#msf .msf-section{display:block;margin-bottom:32px}
+#msf .msf-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
+#msf .msf-grid.full{grid-template-columns:1fr}
+#msf .msf-field{display:flex;flex-direction:column;gap:5px}
+#msf .msf-label{display:block;font-size:0.82rem;font-weight:600;color:#666;letter-spacing:0.03em;text-transform:uppercase;margin-bottom:4px}
+#msf .msf-star{color:#c0392b}
+#msf input[type=text],#msf input[type=email],#msf input[type=date],#msf textarea{display:block!important;width:100%!important;padding:11px 14px!important;border:1.5px solid #ccd8da!important;border-radius:6px!important;font-family:'Source Sans 3',sans-serif!important;font-size:0.97rem!important;color:#2c2c2c!important;background:#fff!important;outline:none!important;-webkit-appearance:none!important;appearance:none!important;line-height:1.4!important;margin:0!important;float:none!important}
+#msf input:focus,#msf textarea:focus{border-color:#1a5f6a!important;box-shadow:0 0 0 3px rgba(26,95,106,0.12)!important}
+#msf textarea{min-height:76px!important;resize:vertical!important}
+#msf .msf-err{display:none;color:#c0392b;font-size:0.82rem;margin-top:3px}
+#msf input.err,#msf textarea.err{border-color:#c0392b!important}
+#msf .msf-radio-group{display:flex;flex-direction:column;gap:10px;margin-bottom:6px}
+#msf .msf-radio{display:flex!important;align-items:flex-start!important;gap:12px!important;padding:13px 15px!important;border:1.5px solid #ccd8da!important;border-radius:8px!important;cursor:pointer!important;background:#fff!important;width:100%!important}
+#msf .msf-radio:hover,#msf .msf-radio.sel{border-color:#1a5f6a!important;background:#e8f4f6!important}
+#msf .msf-radio input[type=radio]{width:18px!important;height:18px!important;margin-top:2px!important;accent-color:#1a5f6a!important;flex-shrink:0!important;cursor:pointer!important;display:inline!important;padding:0!important;border:none!important}
+#msf .msf-rlabel{font-size:0.95rem;color:#2c2c2c;line-height:1.4;display:block}
+#msf .msf-price{display:inline-block!important;background:#1a5f6a!important;color:#fff!important;font-size:0.78rem!important;font-weight:600!important;padding:2px 8px!important;border-radius:20px!important;margin-left:6px!important}
+#msf .msf-small{display:block;font-size:0.82rem;color:#888;margin-top:2px}
+#msf .msf-check{display:flex!important;align-items:flex-start!important;gap:12px!important;padding:13px 15px!important;border:1.5px solid #ccd8da!important;border-radius:8px!important;cursor:pointer!important;margin-bottom:10px!important;background:#fff!important;width:100%!important}
+#msf .msf-check:hover{border-color:#1a5f6a!important;background:#e8f4f6!important}
+#msf .msf-check input[type=checkbox]{width:18px!important;height:18px!important;margin-top:3px!important;accent-color:#1a5f6a!important;flex-shrink:0!important;cursor:pointer!important;display:inline!important;padding:0!important;border:none!important}
+#msf .msf-clabel{font-size:0.93rem;color:#2c2c2c;line-height:1.5;display:block}
+#msf .msf-clabel a{color:#1a5f6a;font-weight:600;text-decoration:underline}
+#msf .msf-src{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:6px}
+#msf .msf-src-opt{display:flex!important;align-items:center!important;gap:8px!important;padding:10px 12px!important;border:1.5px solid #ccd8da!important;border-radius:6px!important;cursor:pointer!important;font-size:0.92rem!important;background:#fff!important}
+#msf .msf-src-opt:hover{border-color:#1a5f6a!important;background:#e8f4f6!important}
+#msf .msf-src-opt input[type=radio]{width:16px!important;height:16px!important;accent-color:#1a5f6a!important;flex-shrink:0!important;display:inline!important;padding:0!important;border:none!important}
+#msf .msf-submit{text-align:center;margin-top:32px}
+#msf .msf-dsgvo{font-size:0.83rem;color:#888;margin-bottom:16px}
+#msf .msf-btn{display:inline-block!important;background:#1a5f6a!important;color:#fff!important;border:none!important;padding:15px 48px!important;font-family:'Source Sans 3',sans-serif!important;font-size:1rem!important;font-weight:600!important;border-radius:6px!important;cursor:pointer!important;width:100%!important;max-width:340px!important;text-align:center!important}
+#msf .msf-btn:hover{background:#144d57!important}
+#msf .msf-btn:disabled{background:#aaa!important;cursor:not-allowed!important}
+#msf .msf-spinner{display:none;width:20px;height:20px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:msfspin 0.7s linear infinite;margin:0 auto}
+@keyframes msfspin{to{transform:rotate(360deg)}}
+#msf .msf-success{display:none;text-align:center;padding:48px 24px;background:#e8f4f6;border-radius:12px;margin-top:24px}
+#msf .msf-success h2{font-family:'Playfair Display',serif!important;color:#144d57;margin-bottom:10px;font-size:1.4rem}
+#msf .msf-tick{font-size:3rem;margin-bottom:12px;display:block}
+@media(max-width:560px){#msf .msf-grid{grid-template-columns:1fr}#msf .msf-src{grid-template-columns:1fr 1fr}}
+</style>
+
+<div id="msf">
+  <div class="msf-header">
+    <h1>Verbindliche Anmeldung</h1>
+    <p>Zum Mitmachen einfach das Formular ausfüllen und abschicken. <strong>Wir freuen uns auf Dich.</strong></p>
+  </div>
+
+  <div class="msf-notice">
+    Ich erkläre mich mit den <a href="https://www.musikschule-hueckelhoven.de/j/shop/terms" target="_blank">AGB</a> einverstanden und das <a href="https://www.musikschule-hueckelhoven.de/j/shop/withdrawal" target="_blank">Widerrufsrecht</a> habe ich zur Kenntnis genommen.
+  </div>
+
+  <form id="msfForm" novalidate>
+
+    <div class="msf-section">
+      <h2>Wähle Deinen Start</h2>
+      <div class="msf-radio-group">
+        <label class="msf-radio" onclick="msfSelRadio(this)">
+          <input type="radio" name="kurs" value="D'dorf ohne Vorwissen | 68 EUR ohne Leih-Baglama | So. 03/05/26 | 13:50-15:10 Uhr">
+          <span class="msf-rlabel">D'dorf (ohne Vorwissen) | So. 03/05/26 | 13:50–15:10 Uhr <span class="msf-price">68 € / mtl.</span><span class="msf-small">ohne Leih-Bağlama</span></span>
+        </label>
+        <label class="msf-radio" onclick="msfSelRadio(this)">
+          <input type="radio" name="kurs" value="D'dorf ohne Vorwissen | 80 EUR mit Leih-Baglama | So. 03/05/26 | 13:50-15:10 Uhr">
+          <span class="msf-rlabel">D'dorf (ohne Vorwissen) | So. 03/05/26 | 13:50–15:10 Uhr <span class="msf-price">80 € / mtl.</span><span class="msf-small">mit Leih-Bağlama</span></span>
+        </label>
+        <label class="msf-radio" onclick="msfSelRadio(this)">
+          <input type="radio" name="kurs" value="Laufender Kurs Grundkenntnisse notwendig | 68 EUR">
+          <span class="msf-rlabel">Laufender Kurs (Grundkenntnisse notwendig) <span class="msf-price">68 € / mtl.</span></span>
+        </label>
+      </div>
+      <span class="msf-err" id="msfKursErr">Bitte wähle einen Kurs aus.</span>
+    </div>
+
+    <hr>
+
+    <div class="msf-section">
+      <h2>Angaben zu Deiner Person</h2>
+      <div class="msf-grid">
+        <div class="msf-field">
+          <span class="msf-label">Vorname des Schülers <span class="msf-star">*</span></span>
+          <input type="text" name="vorname" id="msfVorname" placeholder="Vorname">
+          <span class="msf-err" id="msfVornameErr">Bitte Vorname eingeben.</span>
+        </div>
+        <div class="msf-field">
+          <span class="msf-label">Familienname <span class="msf-star">*</span></span>
+          <input type="text" name="nachname" id="msfNachname" placeholder="Nachname">
+          <span class="msf-err" id="msfNachnameErr">Bitte Nachname eingeben.</span>
+        </div>
+      </div>
+      <div class="msf-grid">
+        <div class="msf-field">
+          <span class="msf-label">Geburtsdatum <span class="msf-star">*</span></span>
+          <input type="date" name="geburtsdatum" id="msfGeburt">
+          <span class="msf-err" id="msfGeburtErr">Bitte Geburtsdatum eingeben.</span>
+        </div>
+        <div class="msf-field">
+          <span class="msf-label">Straße und Hausnummer <span class="msf-star">*</span></span>
+          <input type="text" name="strasse" id="msfStrasse" placeholder="Musterstraße 1">
+          <span class="msf-err" id="msfStrasseErr">Bitte Adresse eingeben.</span>
+        </div>
+      </div>
+      <div class="msf-grid">
+        <div class="msf-field">
+          <span class="msf-label">Postleitzahl <span class="msf-star">*</span></span>
+          <input type="text" name="plz" id="msfPlz" placeholder="12345">
+          <span class="msf-err" id="msfPlzErr">Bitte PLZ eingeben.</span>
+        </div>
+        <div class="msf-field">
+          <span class="msf-label">Ort <span class="msf-star">*</span></span>
+          <input type="text" name="ort" id="msfOrt" placeholder="Musterstadt">
+          <span class="msf-err" id="msfOrtErr">Bitte Ort eingeben.</span>
+        </div>
+      </div>
+      <div class="msf-grid full">
+        <div class="msf-field">
+          <span class="msf-label">Falls Du unter 18 Jahre alt bist: Vor- und Familienname eines Erziehungsberechtigten</span>
+          <textarea name="erziehungsber" placeholder="Name des Erziehungsberechtigten"></textarea>
+        </div>
+      </div>
+      <div class="msf-grid">
+        <div class="msf-field">
+          <span class="msf-label">Telefonnummer <span class="msf-star">*</span></span>
+          <input type="text" name="telefon" id="msfTelefon" placeholder="01234 56789">
+          <span class="msf-err" id="msfTelefonErr">Bitte Telefonnummer eingeben.</span>
+        </div>
+        <div class="msf-field">
+          <span class="msf-label">E-Mail <span class="msf-star">*</span></span>
+          <input type="email" name="email" id="msfEmail" placeholder="deine@email.de">
+          <span class="msf-err" id="msfEmailErr">Bitte gültige E-Mail eingeben.</span>
+        </div>
+      </div>
+      <div class="msf-grid full">
+        <div class="msf-field">
+          <span class="msf-label">E-Mail wiederholen <span class="msf-star">*</span></span>
+          <input type="email" name="email2" id="msfEmail2" placeholder="deine@email.de">
+          <span class="msf-err" id="msfEmail2Err">E-Mail-Adressen stimmen nicht überein.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="msf-section">
+      <h2>Bankdaten</h2>
+      <div class="msf-grid">
+        <div class="msf-field">
+          <span class="msf-label">Kontoinhaber <span class="msf-star">*</span></span>
+          <input type="text" name="kontoinhaber" id="msfKonto" placeholder="Vor- und Nachname">
+          <span class="msf-err" id="msfKontoErr">Bitte Kontoinhaber eingeben.</span>
+        </div>
+        <div class="msf-field">
+          <span class="msf-label">IBAN <span class="msf-star">*</span></span>
+          <input type="text" name="iban" id="msfIban" placeholder="DE00 0000 0000 0000 0000 00">
+          <span class="msf-err" id="msfIbanErr">Bitte IBAN eingeben.</span>
+        </div>
+      </div>
+      <label class="msf-check">
+        <input type="checkbox" name="sepa" id="msfSepa">
+        <span class="msf-clabel">Hiermit ermächtige ich die Musikschule Hückelhoven, künftig den jeweils zum 01. eines jeden Monats fälligen Betrag für den Musikunterricht von meinem Girokonto per SEPA-Lastschrift einzuziehen. Ich kann die Einzugsermächtigung jederzeit widerrufen. Die Gläubiger-ID-Nr. lautet: <strong>DE64ZZZ00002060164</strong></span>
+      </label>
+      <span class="msf-err" id="msfSepaErr">Bitte SEPA-Mandat bestätigen.</span>
+      <label class="msf-check">
+        <input type="checkbox" name="agb" id="msfAgb">
+        <span class="msf-clabel">Ich akzeptiere die <a href="https://www.musikschule-hueckelhoven.de/j/shop/terms" target="_blank">Allgemeinen Geschäftsbedingungen (AGB)</a> sowie die <a href="https://www.musikschule-hueckelhoven.de/j/shop/withdrawal" target="_blank">Widerrufsbelehrung</a> der Musikschule, die ich gelesen und verstanden habe.</span>
+      </label>
+      <span class="msf-err" id="msfAgbErr">Bitte AGB & Widerrufsbelehrung akzeptieren.</span>
+    </div>
+
+    <hr>
+
+    <div class="msf-section">
+      <h2>Hilf uns besser zu werden.</h2>
+      <p style="color:#666;font-size:0.92rem;margin-bottom:12px">Wo bist Du auf uns aufmerksam geworden? <span class="msf-star">*</span></p>
+      <div class="msf-src">
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="YouTube"> YouTube</label>
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="Google"> Google</label>
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="TikTok"> TikTok</label>
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="Facebook"> Facebook</label>
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="Instagram"> Instagram</label>
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="Ebay Kleinanzeigen"> Ebay Kleinanzeigen</label>
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="Sonstige"> Sonstige</label>
+      </div>
+      <span class="msf-err" id="msfQuelleErr">Bitte eine Option auswählen.</span>
+    </div>
+
+    <div class="msf-submit">
+      <p class="msf-dsgvo">Es gilt unsere <a href="#">Datenschutzerklärung</a>.</p>
+      <button type="submit" class="msf-btn" id="msfBtn">
+        <span id="msfBtnTxt">Anmeldung absenden</span>
+        <div class="msf-spinner" id="msfSpinner"></div>
+      </button>
+    </div>
+
+  </form>
+
+  <div class="msf-success" id="msfSuccess">
+    <span class="msf-tick">&#10003;</span>
+    <h2>Vielen Dank für Deine Anmeldung!</h2>
+    <p>Du erhältst in Kürze eine Bestätigungs-E-Mail mit allen Unterlagen.</p>
+  </div>
+</div>
+
+<script>
+function msfSelRadio(label){
+  document.querySelectorAll('#msf .msf-radio').forEach(function(l){l.classList.remove('sel');});
+  label.classList.add('sel');
+}
+function msfErr(id,show){
+  var el=document.getElementById('msf'+id+'Err');
+  var inp=document.getElementById('msf'+id);
+  if(el)el.style.display=show?'block':'none';
+  if(inp){if(show)inp.classList.add('err');else inp.classList.remove('err');}
+}
+function msfValidate(){
+  var ok=true;
+  if(!document.querySelector('#msfForm input[name="kurs"]:checked')){document.getElementById('msfKursErr').style.display='block';ok=false;}
+  else{document.getElementById('msfKursErr').style.display='none';}
+  ['Vorname','Nachname','Geburt','Strasse','Plz','Ort','Telefon','Konto','Iban'].forEach(function(f){
+    var el=document.getElementById('msf'+f);var empty=!el||!el.value.trim();msfErr(f,empty);if(empty)ok=false;
+  });
+  var em=document.getElementById('msfEmail').value.trim();
+  var em2=document.getElementById('msfEmail2').value.trim();
+  var emOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
+  msfErr('Email',!emOk);if(!emOk)ok=false;
+  msfErr('Email2',em!==em2);if(em!==em2)ok=false;
+  var sepa=document.getElementById('msfSepa').checked;
+  document.getElementById('msfSepaErr').style.display=sepa?'none':'block';if(!sepa)ok=false;
+  var agb=document.getElementById('msfAgb').checked;
+  document.getElementById('msfAgbErr').style.display=agb?'none':'block';if(!agb)ok=false;
+  if(!document.querySelector('#msfForm input[name="quelle"]:checked')){document.getElementById('msfQuelleErr').style.display='block';ok=false;}
+  else{document.getElementById('msfQuelleErr').style.display='none';}
+  return ok;
+}
+var WEBHOOK='HIER_DEINE_MAKE_WEBHOOK_URL_EINTRAGEN';
+document.getElementById('msfForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  if(!msfValidate())return;
+  var btn=document.getElementById('msfBtn');
+  var txt=document.getElementById('msfBtnTxt');
+  var spin=document.getElementById('msfSpinner');
+  btn.disabled=true;txt.style.display='none';spin.style.display='block';
+  var data={
+    kurs:document.querySelector('#msfForm input[name="kurs"]:checked').value,
+    vorname:document.getElementById('msfVorname').value.trim(),
+    nachname:document.getElementById('msfNachname').value.trim(),
+    geburtsdatum:document.getElementById('msfGeburt').value,
+    strasse:document.getElementById('msfStrasse').value.trim(),
+    plz:document.getElementById('msfPlz').value.trim(),
+    ort:document.getElementById('msfOrt').value.trim(),
+    erziehungsber:document.querySelector('#msfForm textarea').value.trim(),
+    telefon:document.getElementById('msfTelefon').value.trim(),
+    email:document.getElementById('msfEmail').value.trim(),
+    kontoinhaber:document.getElementById('msfKonto').value.trim(),
+    iban:document.getElementById('msfIban').value.trim(),
+    quelle:document.querySelector('#msfForm input[name="quelle"]:checked').value,
+    zeitstempel:new Date().toISOString()
+  };
+  try{
+    await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),mode:'no-cors'});
+    document.getElementById('msfForm').style.display='none';
+    document.getElementById('msfSuccess').style.display='block';
+  }catch(err){
+    btn.disabled=false;txt.style.display='block';spin.style.display='none';
+    alert('Fehler beim Absenden. Bitte versuche es erneut oder kontaktiere uns direkt.');
+  }
+});
+</script>
+
+</body>
+</html>
