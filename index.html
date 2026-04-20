@@ -4,817 +4,295 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Verbindliche Anmeldung – Musikschule Hückelhoven</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  --teal: #1a5f6a;
-  --teal-dark: #0f3d45;
-  --teal-light: #e8f4f6;
-  --teal-mid: #2d8a98;
-  --gold: #c9a84c;
-  --text: #1a1a2e;
-  --muted: #6b7280;
-  --border: #d1dfe2;
-  --bg: #f8fafb;
-  --white: #ffffff;
-  --error: #dc2626;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-}
-
-/* Hero */
-.hero {
-  background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 60%, var(--teal-mid) 100%);
-  padding: 36px 24px 64px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-note {
-  display: inline-block;
-  font-size: 2rem;
-  margin-bottom: 8px;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-
-.hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
-  font-weight: 700;
-  color: white;
-  margin-bottom: 6px;
-}
-
-.hero p { color: rgba(255,255,255,0.75); font-size: 0.9rem; }
-.hero p strong { color: var(--gold); font-weight: 500; }
-
-.wave {
-  display: block; width: 100%; height: 40px;
-  background: var(--bg);
-  clip-path: ellipse(55% 100% at 50% 100%);
-}
-
-/* Wrapper */
-.wrap {
-  max-width: 560px;
-  margin: -20px auto 60px;
-  padding: 0 16px;
-}
-
-/* Progress */
-.progress-wrap {
-  background: white;
-  border-radius: 16px;
-  padding: 20px 24px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 16px rgba(26,95,106,0.07);
-}
-
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.progress-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--teal-dark);
-}
-
-.progress-count {
-  font-size: 0.8rem;
-  color: var(--muted);
-  background: var(--teal-light);
-  padding: 3px 10px;
-  border-radius: 20px;
-}
-
-.progress-bar {
-  height: 5px;
-  background: var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--teal), var(--teal-mid));
-  border-radius: 10px;
-  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
-}
-
-.progress-steps {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-.prog-step {
-  font-size: 0.72rem;
-  color: var(--border);
-  transition: color 0.3s;
-  text-align: center;
-  flex: 1;
-}
-
-.prog-step.done { color: var(--teal); font-weight: 500; }
-.prog-step.active { color: var(--teal-dark); font-weight: 600; }
-
-/* Card */
-.card {
-  background: white;
-  border-radius: 20px;
-  padding: 28px 22px;
-  box-shadow: 0 2px 20px rgba(26,95,106,0.07);
-  border: 1px solid rgba(26,95,106,0.07);
-  animation: slideIn 0.35s ease;
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-20px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-.card.reverse { animation: slideInLeft 0.35s ease; }
-
-.card-icon { font-size: 1.6rem; margin-bottom: 6px; }
-.card-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--teal-dark);
-  margin-bottom: 4px;
-}
-.card-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 22px; }
-
-/* Steps */
-.step { display: none; }
-.step.active { display: block; }
-
-/* Kurs options */
-.kurs-options { display: flex; flex-direction: column; gap: 10px; }
-
-.kurs-opt input[type=radio] { display: none; }
-
-.kurs-lbl {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 14px 16px;
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.kurs-lbl:hover { border-color: var(--teal); background: var(--teal-light); }
-
-.kurs-opt input:checked + .kurs-lbl {
-  border-color: var(--teal);
-  background: var(--teal-light);
-  box-shadow: 0 0 0 3px rgba(26,95,106,0.08);
-}
-
-.kurs-circle {
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  flex-shrink: 0;
-  margin-top: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-}
-
-.kurs-opt input:checked + .kurs-lbl .kurs-circle {
-  border-color: var(--teal);
-  background: var(--teal);
-}
-
-.kurs-opt input:checked + .kurs-lbl .kurs-circle::after {
-  content: '';
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: white;
-}
-
-.kurs-info { flex: 1; }
-.kurs-name { font-size: 0.93rem; font-weight: 500; color: var(--text); line-height: 1.4; }
-.kurs-det { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
-.kurs-price {
-  background: var(--teal); color: white;
-  font-size: 0.75rem; font-weight: 500;
-  padding: 3px 10px; border-radius: 20px;
-  white-space: nowrap; align-self: flex-start; margin-top: 2px;
-}
-
-/* Fields */
-.fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-.fgrid.full { grid-template-columns: 1fr; }
-@media(max-width:500px){ .fgrid { grid-template-columns: 1fr; } }
-
-.field { display: flex; flex-direction: column; gap: 5px; }
-
-.field label {
-  font-size: 0.72rem; font-weight: 500;
-  color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase;
-}
-
-.field label span { color: var(--error); }
-
-.field input, .field textarea {
-  padding: 12px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
-  color: var(--text);
-  background: white;
-  outline: none;
-  transition: all 0.2s;
-  width: 100%;
-  -webkit-appearance: none;
-}
-
-.field input:focus, .field textarea:focus {
-  border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(26,95,106,0.1);
-}
-
-.field input.err { border-color: var(--error); }
-.ferr { display: none; color: var(--error); font-size: 0.75rem; }
-.field textarea { min-height: 70px; resize: vertical; }
-
-/* Checkboxes */
-.check-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 14px 16px;
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-bottom: 10px;
-}
-
-.check-item:hover { border-color: var(--teal); background: var(--teal-light); }
-.check-item.on { border-color: var(--teal); background: var(--teal-light); }
-
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--border);
-  border-radius: 6px;
-  flex-shrink: 0; margin-top: 1px;
-  display: flex; align-items: center; justify-content: center;
-  background: white; transition: all 0.2s;
-}
-
-.check-item.on .check-box {
-  border-color: var(--teal); background: var(--teal);
-}
-
-.check-item.on .check-box::after {
-  content: '✓'; color: white; font-size: 12px; font-weight: 700;
-}
-
-.check-item input { display: none; }
-.check-txt { font-size: 0.86rem; color: var(--text); line-height: 1.5; }
-.check-txt a { color: var(--teal); font-weight: 500; }
-
-/* Source */
-.src-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 8px;
-}
-
-.src-opt input { display: none; }
-
-.src-lbl {
-  display: flex; align-items: center; justify-content: center;
-  padding: 10px 8px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  cursor: pointer; font-size: 0.83rem;
-  text-align: center; transition: all 0.2s;
-  background: white;
-}
-
-.src-lbl:hover { border-color: var(--teal); background: var(--teal-light); }
-.src-opt input:checked + .src-lbl {
-  border-color: var(--teal); background: var(--teal-light);
-  color: var(--teal-dark); font-weight: 500;
-}
-
-/* Summary */
-.summary { display: flex; flex-direction: column; gap: 0; }
-
-.sum-row {
-  display: flex; gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--teal-light);
-  font-size: 0.88rem;
-}
-
-.sum-row:last-child { border-bottom: none; }
-.sum-label { color: var(--muted); min-width: 120px; flex-shrink: 0; }
-.sum-value { color: var(--text); font-weight: 500; word-break: break-word; }
-
-/* Buttons */
-.btn-row {
-  display: flex; gap: 10px; margin-top: 24px;
-}
-
-.btn-back {
-  padding: 14px 20px;
-  background: transparent;
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem;
-  color: var(--muted);
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex; align-items: center; gap: 6px;
-}
-
-.btn-back:hover { border-color: var(--teal); color: var(--teal); }
-
-.btn-next {
-  flex: 1;
-  padding: 14px 20px;
-  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-mid) 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-}
-
-.btn-next:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,95,106,0.25); }
-.btn-next:active { transform: translateY(0); }
-.btn-next:disabled { background: #aaa; cursor: not-allowed; transform: none; box-shadow: none; }
-
-.spinner {
-  display: none; width: 16px; height: 16px;
-  border: 2px solid rgba(255,255,255,0.4);
-  border-top-color: white; border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.err-msg { display: none; color: var(--error); font-size: 0.8rem; margin-top: 8px; }
-
-/* Notice */
-.notice {
-  background: var(--teal-light);
-  border-left: 3px solid var(--teal);
-  border-radius: 0 10px 10px 0;
-  padding: 10px 14px;
-  font-size: 0.83rem;
-  margin-bottom: 18px;
-}
-.notice a { color: var(--teal); font-weight: 500; }
-
-/* Success */
-.success-card {
-  display: none;
-  text-align: center;
-  padding: 52px 24px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 2px 20px rgba(26,95,106,0.07);
-}
-
-.success-icon {
-  width: 68px; height: 68px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--teal), var(--teal-mid));
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 18px;
-  font-size: 1.8rem;
-  animation: popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275);
-}
-
-@keyframes popIn { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
-
-.success-card h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.8rem; color: var(--teal-dark); margin-bottom: 10px;
-}
-
-.success-card p { color: var(--muted); font-size: 0.9rem; }
-</style>
 </head>
-<body>
+<body style="margin:0;padding:0;background:#fff">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+#msf,#msf *{all:unset;box-sizing:border-box!important}
+#msf{display:block;max-width:760px;margin:0 auto;padding:0 20px 60px;font-family:'Source Sans 3',sans-serif!important;font-size:16px;color:#2c2c2c;line-height:1.6}
+#msf h1{display:block;text-align:center;font-family:'Playfair Display',serif!important;font-size:1.6rem;font-weight:700;color:#144d57;margin-bottom:10px}
+#msf h2{display:block;font-family:'Playfair Display',serif!important;font-size:1.25rem;font-weight:700;color:#144d57;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #ccd8da}
+#msf p{display:block;margin-bottom:8px;font-size:0.95rem;color:#2c2c2c}
+#msf a{color:#1a5f6a;font-weight:600;text-decoration:underline;cursor:pointer}
+#msf hr{display:block;border:none;border-top:1px solid #ccd8da;margin:28px 0}
+#msf .msf-header{text-align:center;padding:24px 0 20px;border-bottom:2px solid #ccd8da;margin-bottom:24px}
+#msf .msf-header p{color:#666;font-size:1rem}
 
-<div class="hero">
-  <div class="hero-note">♪</div>
-  <h1>Verbindliche Anmeldung</h1>
-  <p>Zum Mitmachen einfach ausfüllen und abschicken. <strong>Wir freuen uns auf Dich.</strong></p>
-</div>
-<div class="wave"></div>
+#msf .msf-section{display:block;margin-bottom:32px}
+#msf .msf-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
+#msf .msf-grid.full{grid-template-columns:1fr}
+#msf .msf-field{display:flex;flex-direction:column;gap:5px}
+#msf .msf-label{display:block;font-size:0.82rem;font-weight:600;color:#666;letter-spacing:0.03em;text-transform:uppercase;margin-bottom:4px}
+#msf .msf-star{color:#c0392b}
+#msf input[type=text],#msf input[type=email],#msf input[type=date],#msf textarea{display:block!important;width:100%!important;padding:11px 14px!important;border:1.5px solid #ccd8da!important;border-radius:6px!important;font-family:'Source Sans 3',sans-serif!important;font-size:0.97rem!important;color:#2c2c2c!important;background:#fff!important;outline:none!important;-webkit-appearance:none!important;appearance:none!important;line-height:1.4!important;margin:0!important;float:none!important}
+#msf input:focus,#msf textarea:focus{border-color:#1a5f6a!important;box-shadow:0 0 0 3px rgba(26,95,106,0.12)!important}
+#msf textarea{min-height:76px!important;resize:vertical!important}
+#msf .msf-err{display:none;color:#c0392b;font-size:0.82rem;margin-top:3px}
+#msf input.err,#msf textarea.err{border-color:#c0392b!important}
+#msf .msf-radio-group{display:flex;flex-direction:column;gap:10px;margin-bottom:6px}
+#msf .msf-radio{display:flex!important;align-items:flex-start!important;gap:12px!important;padding:13px 15px!important;border:1.5px solid #ccd8da!important;border-radius:8px!important;cursor:pointer!important;background:#fff!important;width:100%!important}
+#msf .msf-radio:hover,#msf .msf-radio.sel{border-color:#1a5f6a!important;background:#e8f4f6!important}
+#msf .msf-radio input[type=radio]{width:18px!important;height:18px!important;margin-top:2px!important;accent-color:#1a5f6a!important;flex-shrink:0!important;cursor:pointer!important;display:inline!important;padding:0!important;border:none!important}
+#msf .msf-rlabel{font-size:0.95rem;color:#2c2c2c;line-height:1.4;display:block}
+#msf .msf-price{display:inline-block!important;background:#1a5f6a!important;color:#fff!important;font-size:0.78rem!important;font-weight:600!important;padding:2px 8px!important;border-radius:20px!important;margin-left:6px!important}
+#msf .msf-small{display:block;font-size:0.82rem;color:#888;margin-top:2px}
+#msf .msf-check{display:flex!important;align-items:flex-start!important;gap:14px!important;padding:14px 15px!important;border:1.5px solid #ccd8da!important;border-radius:8px!important;cursor:pointer!important;margin-bottom:10px!important;background:#fff!important;width:100%!important;transition:border-color 0.2s,background 0.2s!important}
+#msf .msf-check:hover{border-color:#1a5f6a!important;background:#e8f4f6!important}
+#msf .msf-check input[type=checkbox]{display:none!important}
+#msf .msf-checkmark{width:24px!important;height:24px!important;min-width:24px!important;border:2px solid #ccd8da!important;border-radius:5px!important;background:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;margin-top:1px!important;transition:all 0.15s!important;flex-shrink:0!important}
+#msf .msf-checkmark svg{display:none!important}
+#msf .msf-check input[type=checkbox]:checked ~ .msf-checkmark,
+#msf .msf-check.checked .msf-checkmark{border-color:#1a5f6a!important;background:#1a5f6a!important}
+#msf .msf-check input[type=checkbox]:checked ~ .msf-checkmark svg,
+#msf .msf-check.checked .msf-checkmark svg{display:block!important}
+#msf .msf-check.checked{border-color:#1a5f6a!important;background:#e8f4f6!important}
+#msf .msf-clabel{font-size:0.93rem;color:#2c2c2c;line-height:1.5;display:block}
+#msf .msf-clabel a{color:#1a5f6a;font-weight:600;text-decoration:underline}
+#msf .msf-src{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:6px}
+#msf .msf-src-opt{display:flex!important;align-items:center!important;gap:8px!important;padding:10px 12px!important;border:1.5px solid #ccd8da!important;border-radius:6px!important;cursor:pointer!important;font-size:0.92rem!important;background:#fff!important}
+#msf .msf-src-opt:hover{border-color:#1a5f6a!important;background:#e8f4f6!important}
+#msf .msf-src-opt input[type=radio]{width:16px!important;height:16px!important;accent-color:#1a5f6a!important;flex-shrink:0!important;display:inline!important;padding:0!important;border:none!important}
+#msf .msf-submit{text-align:center;margin-top:32px}
+#msf .msf-dsgvo{font-size:0.83rem;color:#888;margin-bottom:16px}
+#msf .msf-btn{display:inline-block!important;background:#1a5f6a!important;color:#fff!important;border:none!important;padding:15px 48px!important;font-family:'Source Sans 3',sans-serif!important;font-size:1rem!important;font-weight:600!important;border-radius:6px!important;cursor:pointer!important;width:100%!important;max-width:340px!important;text-align:center!important}
+#msf .msf-btn:hover{background:#144d57!important}
+#msf .msf-btn:disabled{background:#aaa!important;cursor:not-allowed!important}
+#msf .msf-spinner{display:none;width:20px;height:20px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:msfspin 0.7s linear infinite;margin:0 auto}
+@keyframes msfspin{to{transform:rotate(360deg)}}
+#msf .msf-success{display:none;text-align:center;padding:48px 24px;background:#e8f4f6;border-radius:12px;margin-top:24px}
+#msf .msf-success h2{font-family:'Playfair Display',serif!important;color:#144d57;margin-bottom:10px;font-size:1.4rem}
+#msf .msf-tick{font-size:3rem;margin-bottom:12px;display:block}
+@media(max-width:600px){#msf .msf-grid{grid-template-columns:1fr!important}#msf .msf-src{grid-template-columns:1fr 1fr}#msf{padding:0 14px 40px}#msf h1{font-size:1.4rem!important}#msf h2{font-size:1.1rem!important}#msf input[type=text],#msf input[type=email],#msf input[type=date],#msf textarea{font-size:1rem!important;padding:13px 14px!important}#msf .msf-radio{padding:14px!important}#msf .msf-check{padding:14px!important}#msf .msf-btn{padding:16px!important;font-size:1rem!important}#msf .msf-header{padding:20px 0 16px}}
+</style>
 
-<div class="wrap">
-
-  <!-- Progress -->
-  <div class="progress-wrap" id="progressWrap">
-    <div class="progress-header">
-      <div class="progress-title" id="progressTitle">Kursauswahl</div>
-      <div class="progress-count" id="progressCount">1 / 5</div>
-    </div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill" style="width:20%"></div>
-    </div>
-    <div class="progress-steps">
-      <div class="prog-step active" id="ps1">Kurs</div>
-      <div class="prog-step" id="ps2">Person</div>
-      <div class="prog-step" id="ps3">Bank</div>
-      <div class="prog-step" id="ps4">Quelle</div>
-      <div class="prog-step" id="ps5">Bestätigung</div>
-    </div>
+<div id="msf">
+  <div class="msf-header">
+    <h1>Verbindliche Anmeldung</h1>
+    <p>Zum Mitmachen einfach das Formular ausfüllen und abschicken.</p><p style="margin-top:10px;font-weight:600;color:#144d57;font-size:1rem">Wir freuen uns auf Dich.</p>
   </div>
 
-  <form id="msForm" novalidate>
+  <form id="msfForm" novalidate>
 
-    <!-- Step 1: Kurs -->
-    <div class="card step active" id="step1">
-      <div class="card-icon">🎵</div>
-      <h2 class="card-title">Wähle Deinen Kurs</h2>
-      <p class="card-sub">Wähle den Kurs der am besten zu dir passt.</p>
-      <div class="kurs-options">
-        <div class="kurs-opt">
-          <input type="radio" name="kurs" id="k1" value="D'dorf ohne Vorwissen | 68 EUR ohne Leih-Baglama | So. 03/05/26 | 13:50-15:10 Uhr">
-          <label class="kurs-lbl" for="k1">
-            <div class="kurs-circle"></div>
-            <div class="kurs-info">
-              <div class="kurs-name">D'dorf (ohne Vorwissen) | So. 03/05/26 | 13:50–15:10 Uhr</div>
-              <div class="kurs-det">ohne Leih-Bağlama</div>
-            </div>
-            <div class="kurs-price">68 € / mtl.</div>
-          </label>
+    <div class="msf-section">
+      <h2>Wähle Deinen Start</h2>
+      <div class="msf-radio-group">
+        <label class="msf-radio" onclick="msfSelRadio(this)">
+          <input type="radio" name="kurs" value="D'dorf ohne Vorwissen | 68 EUR ohne Leih-Baglama | So. 03/05/26 | 13:50-15:10 Uhr">
+          <span class="msf-rlabel">D'dorf (ohne Vorwissen) | So. 03/05/26 | 13:50–15:10 Uhr <span class="msf-price">68 € / mtl.</span><span class="msf-small">ohne Leih-Bağlama</span></span>
+        </label>
+        <label class="msf-radio" onclick="msfSelRadio(this)">
+          <input type="radio" name="kurs" value="D'dorf ohne Vorwissen | 80 EUR mit Leih-Baglama | So. 03/05/26 | 13:50-15:10 Uhr">
+          <span class="msf-rlabel">D'dorf (ohne Vorwissen) | So. 03/05/26 | 13:50–15:10 Uhr <span class="msf-price">80 € / mtl.</span><span class="msf-small">mit Leih-Bağlama</span></span>
+        </label>
+        <label class="msf-radio" onclick="msfSelRadio(this)">
+          <input type="radio" name="kurs" value="Laufender Kurs Grundkenntnisse notwendig | 68 EUR">
+          <span class="msf-rlabel">Laufender Kurs (Grundkenntnisse notwendig) <span class="msf-price">68 € / mtl.</span></span>
+        </label>
+      </div>
+      <span class="msf-err" id="msfKursErr">Bitte wähle einen Kurs aus.</span>
+    </div>
+
+    <hr>
+
+    <div class="msf-section">
+      <h2>Angaben zu Deiner Person</h2>
+      <div class="msf-grid">
+        <div class="msf-field">
+          <span class="msf-label">Vorname des Schülers <span class="msf-star">*</span></span>
+          <input type="text" name="vorname" id="msfVorname" placeholder="Vorname">
+          <span class="msf-err" id="msfVornameErr">Bitte Vorname eingeben.</span>
         </div>
-        <div class="kurs-opt">
-          <input type="radio" name="kurs" id="k2" value="D'dorf ohne Vorwissen | 80 EUR mit Leih-Baglama | So. 03/05/26 | 13:50-15:10 Uhr">
-          <label class="kurs-lbl" for="k2">
-            <div class="kurs-circle"></div>
-            <div class="kurs-info">
-              <div class="kurs-name">D'dorf (ohne Vorwissen) | So. 03/05/26 | 13:50–15:10 Uhr</div>
-              <div class="kurs-det">mit Leih-Bağlama</div>
-            </div>
-            <div class="kurs-price">80 € / mtl.</div>
-          </label>
-        </div>
-        <div class="kurs-opt">
-          <input type="radio" name="kurs" id="k3" value="Laufender Kurs Grundkenntnisse notwendig | 68 EUR">
-          <label class="kurs-lbl" for="k3">
-            <div class="kurs-circle"></div>
-            <div class="kurs-info">
-              <div class="kurs-name">Laufender Kurs (Grundkenntnisse notwendig)</div>
-            </div>
-            <div class="kurs-price">68 € / mtl.</div>
-          </label>
+        <div class="msf-field">
+          <span class="msf-label">Familienname <span class="msf-star">*</span></span>
+          <input type="text" name="nachname" id="msfNachname" placeholder="Nachname">
+          <span class="msf-err" id="msfNachnameErr">Bitte Nachname eingeben.</span>
         </div>
       </div>
-      <div class="err-msg" id="kursErr">Bitte wähle einen Kurs aus.</div>
-      <div class="btn-row">
-        <button type="button" class="btn-next" onclick="goNext(1)">Weiter →</button>
+      <div class="msf-grid">
+        <div class="msf-field">
+          <span class="msf-label">Geburtsdatum <span class="msf-star">*</span></span>
+          <input type="date" name="geburtsdatum" id="msfGeburt">
+          <span class="msf-err" id="msfGeburtErr">Bitte Geburtsdatum eingeben.</span>
+        </div>
+        <div class="msf-field">
+          <span class="msf-label">Straße und Hausnummer <span class="msf-star">*</span></span>
+          <input type="text" name="strasse" id="msfStrasse" placeholder="Musterstraße 1">
+          <span class="msf-err" id="msfStrasseErr">Bitte Adresse eingeben.</span>
+        </div>
+      </div>
+      <div class="msf-grid">
+        <div class="msf-field">
+          <span class="msf-label">Postleitzahl <span class="msf-star">*</span></span>
+          <input type="text" name="plz" id="msfPlz" placeholder="12345">
+          <span class="msf-err" id="msfPlzErr">Bitte PLZ eingeben.</span>
+        </div>
+        <div class="msf-field">
+          <span class="msf-label">Ort <span class="msf-star">*</span></span>
+          <input type="text" name="ort" id="msfOrt" placeholder="Musterstadt">
+          <span class="msf-err" id="msfOrtErr">Bitte Ort eingeben.</span>
+        </div>
+      </div>
+      <div class="msf-grid full">
+        <div class="msf-field">
+          <span class="msf-label">Falls Du unter 18 Jahre alt bist: Vor- und Familienname eines Erziehungsberechtigten</span>
+          <textarea name="erziehungsber" placeholder="Name des Erziehungsberechtigten"></textarea>
+        </div>
+      </div>
+      <div class="msf-grid">
+        <div class="msf-field">
+          <span class="msf-label">Telefonnummer <span class="msf-star">*</span></span>
+          <input type="text" name="telefon" id="msfTelefon" placeholder="01234 56789">
+          <span class="msf-err" id="msfTelefonErr">Bitte Telefonnummer eingeben.</span>
+        </div>
+        <div class="msf-field">
+          <span class="msf-label">E-Mail <span class="msf-star">*</span></span>
+          <input type="email" name="email" id="msfEmail" placeholder="deine@email.de">
+          <span class="msf-err" id="msfEmailErr">Bitte gültige E-Mail eingeben.</span>
+        </div>
+      </div>
+      <div class="msf-grid full">
+        <div class="msf-field">
+          <span class="msf-label">E-Mail wiederholen <span class="msf-star">*</span></span>
+          <input type="email" name="email2" id="msfEmail2" placeholder="deine@email.de">
+          <span class="msf-err" id="msfEmail2Err">E-Mail-Adressen stimmen nicht überein.</span>
+        </div>
       </div>
     </div>
 
-    <!-- Step 2: Person -->
-    <div class="card step" id="step2">
-      <div class="card-icon">👤</div>
-      <h2 class="card-title">Deine Angaben</h2>
-      <p class="card-sub">Bitte fülle alle Pflichtfelder aus.</p>
-      <div class="fgrid">
-        <div class="field">
-          <label>Vorname <span>*</span></label>
-          <input type="text" id="vorname" placeholder="Vorname">
-          <div class="ferr" id="vornameErr">Pflichtfeld</div>
+    <hr>
+
+    <div class="msf-section">
+      <h2>Bankdaten</h2>
+      <div class="msf-grid">
+        <div class="msf-field">
+          <span class="msf-label">Kontoinhaber <span class="msf-star">*</span></span>
+          <input type="text" name="kontoinhaber" id="msfKonto" placeholder="Vor- und Nachname">
+          <span class="msf-err" id="msfKontoErr">Bitte Kontoinhaber eingeben.</span>
         </div>
-        <div class="field">
-          <label>Familienname <span>*</span></label>
-          <input type="text" id="nachname" placeholder="Nachname">
-          <div class="ferr" id="nachnameErr">Pflichtfeld</div>
-        </div>
-      </div>
-      <div class="fgrid">
-        <div class="field">
-          <label>Geburtsdatum <span>*</span></label>
-          <input type="date" id="geburt">
-          <div class="ferr" id="geburtErr">Pflichtfeld</div>
-        </div>
-        <div class="field">
-          <label>Straße und Hausnummer <span>*</span></label>
-          <input type="text" id="strasse" placeholder="Musterstraße 1">
-          <div class="ferr" id="strasseErr">Pflichtfeld</div>
+        <div class="msf-field">
+          <span class="msf-label">IBAN <span class="msf-star">*</span></span>
+          <input type="text" name="iban" id="msfIban" placeholder="DE00 0000 0000 0000 0000 00">
+          <span class="msf-err" id="msfIbanErr">Bitte IBAN eingeben.</span>
         </div>
       </div>
-      <div class="fgrid">
-        <div class="field">
-          <label>Postleitzahl <span>*</span></label>
-          <input type="text" id="plz" placeholder="12345">
-          <div class="ferr" id="plzErr">Pflichtfeld</div>
-        </div>
-        <div class="field">
-          <label>Ort <span>*</span></label>
-          <input type="text" id="ort" placeholder="Musterstadt">
-          <div class="ferr" id="ortErr">Pflichtfeld</div>
-        </div>
-      </div>
-      <div class="fgrid full">
-        <div class="field">
-          <label>Falls unter 18: Name des Erziehungsberechtigten</label>
-          <textarea id="erziehungsber" placeholder="Vor- und Nachname"></textarea>
-        </div>
-      </div>
-      <div class="fgrid">
-        <div class="field">
-          <label>Telefonnummer <span>*</span></label>
-          <input type="text" id="telefon" placeholder="01234 56789">
-          <div class="ferr" id="telefonErr">Pflichtfeld</div>
-        </div>
-        <div class="field">
-          <label>E-Mail <span>*</span></label>
-          <input type="email" id="email" placeholder="deine@email.de">
-          <div class="ferr" id="emailErr">Bitte gültige E-Mail</div>
-        </div>
-      </div>
-      <div class="fgrid full">
-        <div class="field">
-          <label>E-Mail wiederholen <span>*</span></label>
-          <input type="email" id="email2" placeholder="deine@email.de">
-          <div class="ferr" id="email2Err">E-Mails stimmen nicht überein</div>
-        </div>
-      </div>
-      <div class="btn-row">
-        <button type="button" class="btn-back" onclick="goBack(2)">← Zurück</button>
-        <button type="button" class="btn-next" onclick="goNext(2)">Weiter →</button>
-      </div>
+      <label class="msf-check" onclick="msfToggleCheck(this)">
+        <input type="checkbox" name="sepa" id="msfSepa">
+        <span class="msf-checkmark"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="msf-clabel">Hiermit ermächtige ich die Musikschule Hückelhoven, künftig den jeweils zum 01. eines jeden Monats fälligen Betrag für den Musikunterricht von meinem Girokonto per SEPA-Lastschrift einzuziehen. Ich kann die Einzugsermächtigung jederzeit widerrufen. Die Gläubiger-ID-Nr. lautet: <strong>DE64ZZZ00002060164</strong></span>
+      </label>
+      <span class="msf-err" id="msfSepaErr">Bitte SEPA-Mandat bestätigen.</span>
+      <label class="msf-check" onclick="msfToggleCheck(this)">
+        <input type="checkbox" name="agb" id="msfAgb">
+        <span class="msf-checkmark"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="msf-clabel">Ich akzeptiere die <a href="https://www.musikschule-hueckelhoven.de/j/shop/terms" target="_blank">Allgemeinen Geschäftsbedingungen (AGB)</a> sowie die <a href="https://www.musikschule-hueckelhoven.de/j/shop/withdrawal" target="_blank">Widerrufsbelehrung</a> der Musikschule, die ich gelesen und verstanden habe.</span>
+      </label>
+      <span class="msf-err" id="msfAgbErr">Bitte AGB & Widerrufsbelehrung akzeptieren.</span>
     </div>
 
-    <!-- Step 3: Bank -->
-    <div class="card step" id="step3">
-      <div class="card-icon">🏦</div>
-      <h2 class="card-title">Bankdaten</h2>
-      <p class="card-sub">Für den monatlichen SEPA-Lastschrifteinzug.</p>
-      <div class="fgrid">
-        <div class="field">
-          <label>Kontoinhaber <span>*</span></label>
-          <input type="text" id="konto" placeholder="Vor- und Nachname">
-          <div class="ferr" id="kontoErr">Pflichtfeld</div>
-        </div>
-        <div class="field">
-          <label>IBAN <span>*</span></label>
-          <input type="text" id="iban" placeholder="DE00 0000 0000 0000 0000 00">
-          <div class="ferr" id="ibanErr">Pflichtfeld</div>
-        </div>
+    <hr>
+
+    <div class="msf-section">
+      <h2>Hilf uns besser zu werden.</h2>
+      <p style="color:#666;font-size:0.92rem;margin-bottom:12px">Wo bist Du auf uns aufmerksam geworden? <span class="msf-star">*</span></p>
+      <div class="msf-src">
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="YouTube"> YouTube</label>
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="Google"> Google</label>
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="TikTok"> TikTok</label>
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="Facebook"> Facebook</label>
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="Instagram"> Instagram</label>
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="Ebay Kleinanzeigen"> Ebay Kleinanzeigen</label>
+        <label class="msf-src-opt"><input type="radio" name="quelle" value="Sonstige"> Sonstige</label>
       </div>
-      <div class="check-item" id="sepaItem" onclick="toggleCheck(this,'sepa')">
-        <input type="checkbox" id="sepa">
-        <div class="check-box"></div>
-        <div class="check-txt">Hiermit ermächtige ich die Musikschule Hückelhoven, den monatlichen Betrag per SEPA-Lastschrift einzuziehen. Gläubiger-ID: <strong>DE64ZZZ00002060164</strong></div>
-      </div>
-      <div class="err-msg" id="sepaErr">Bitte SEPA-Mandat bestätigen.</div>
-      <div class="check-item" id="agbItem" onclick="toggleCheck(this,'agb')">
-        <input type="checkbox" id="agb">
-        <div class="check-box"></div>
-        <div class="check-txt">Ich akzeptiere die <a href="https://www.musikschule-hueckelhoven.de/j/shop/terms" target="_blank" onclick="event.stopPropagation()">AGB</a> sowie die <a href="https://www.musikschule-hueckelhoven.de/j/shop/withdrawal" target="_blank" onclick="event.stopPropagation()">Widerrufsbelehrung</a> der Musikschule.</div>
-      </div>
-      <div class="err-msg" id="agbErr">Bitte AGB akzeptieren.</div>
-      <div class="btn-row">
-        <button type="button" class="btn-back" onclick="goBack(3)">← Zurück</button>
-        <button type="button" class="btn-next" onclick="goNext(3)">Weiter →</button>
-      </div>
+      <span class="msf-err" id="msfQuelleErr">Bitte eine Option auswählen.</span>
     </div>
 
-    <!-- Step 4: Quelle -->
-    <div class="card step" id="step4">
-      <div class="card-icon">💬</div>
-      <h2 class="card-title">Wie hast Du uns gefunden?</h2>
-      <p class="card-sub">Hilf uns besser zu werden.</p>
-      <div class="src-grid">
-        <div class="src-opt"><input type="radio" name="quelle" id="qYT" value="YouTube"><label class="src-lbl" for="qYT">▶ YouTube</label></div>
-        <div class="src-opt"><input type="radio" name="quelle" id="qG" value="Google"><label class="src-lbl" for="qG">🔍 Google</label></div>
-        <div class="src-opt"><input type="radio" name="quelle" id="qTT" value="TikTok"><label class="src-lbl" for="qTT">♪ TikTok</label></div>
-        <div class="src-opt"><input type="radio" name="quelle" id="qFB" value="Facebook"><label class="src-lbl" for="qFB">Facebook</label></div>
-        <div class="src-opt"><input type="radio" name="quelle" id="qIG" value="Instagram"><label class="src-lbl" for="qIG">📷 Instagram</label></div>
-        <div class="src-opt"><input type="radio" name="quelle" id="qEB" value="Ebay Kleinanzeigen"><label class="src-lbl" for="qEB">Ebay KA</label></div>
-        <div class="src-opt"><input type="radio" name="quelle" id="qSo" value="Sonstige"><label class="src-lbl" for="qSo">Sonstige</label></div>
-      </div>
-      <div class="err-msg" id="quelleErr">Bitte eine Option wählen.</div>
-      <div class="btn-row">
-        <button type="button" class="btn-back" onclick="goBack(4)">← Zurück</button>
-        <button type="button" class="btn-next" onclick="goNext(4)">Weiter →</button>
-      </div>
-    </div>
-
-    <!-- Step 5: Summary -->
-    <div class="card step" id="step5">
-      <div class="card-icon">✅</div>
-      <h2 class="card-title">Alles korrekt?</h2>
-      <p class="card-sub">Bitte überprüfe Deine Angaben vor dem Absenden.</p>
-      <div class="notice">
-        Ich erkläre mich mit den <a href="https://www.musikschule-hueckelhoven.de/j/shop/terms" target="_blank">AGB</a> einverstanden und das <a href="https://www.musikschule-hueckelhoven.de/j/shop/withdrawal" target="_blank">Widerrufsrecht</a> habe ich zur Kenntnis genommen.
-      </div>
-      <div class="summary" id="summaryContent"></div>
-      <div style="text-align:center;font-size:0.75rem;color:var(--muted);margin-top:16px">
-        Es gilt unsere <a href="#" style="color:var(--teal)">Datenschutzerklärung</a>.
-      </div>
-      <div class="btn-row">
-        <button type="button" class="btn-back" onclick="goBack(5)">← Zurück</button>
-        <button type="submit" class="btn-next" id="submitBtn">
-          <span id="btnTxt">Jetzt anmelden ✓</span>
-          <div class="spinner" id="spinner"></div>
-        </button>
-      </div>
+    <div class="msf-submit">
+      <p class="msf-dsgvo">Es gilt unsere <a href="#">Datenschutzerklärung</a>.</p>
+      <button type="submit" class="msf-btn" id="msfBtn">
+        <span id="msfBtnTxt">Anmeldung absenden</span>
+        <div class="msf-spinner" id="msfSpinner"></div>
+      </button>
     </div>
 
   </form>
 
-  <div class="success-card" id="successCard">
-    <div class="success-icon">✓</div>
-    <h2>Vielen Dank!</h2>
-    <p>Deine Anmeldung ist eingegangen.<br>Du erhältst in Kürze eine Bestätigungs-E-Mail mit allen Unterlagen.</p>
+  <div class="msf-success" id="msfSuccess">
+    <span class="msf-tick">&#10003;</span>
+    <h2>Vielen Dank für Deine Anmeldung!</h2>
+    <p>Du erhältst in Kürze eine Bestätigungs-E-Mail mit allen Unterlagen.</p>
   </div>
-
 </div>
 
 <script>
-var currentStep = 1;
-var totalSteps = 5;
-
-var stepTitles = ['Kursauswahl','Persönliche Daten','Bankdaten','Wie gefunden?','Bestätigung'];
-
-function updateProgress(step, reverse) {
-  document.getElementById('progressTitle').textContent = stepTitles[step-1];
-  document.getElementById('progressCount').textContent = step + ' / ' + totalSteps;
-  document.getElementById('progressFill').style.width = (step/totalSteps*100) + '%';
-  for(var i=1;i<=totalSteps;i++){
-    var el = document.getElementById('ps'+i);
-    el.className = 'prog-step' + (i<step?' done':i===step?' active':'');
-  }
-}
-
-function showStep(step, reverse) {
-  document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active','reverse'); });
-  var el = document.getElementById('step'+step);
-  el.classList.add('active');
-  if(reverse) el.classList.add('reverse');
-  updateProgress(step, reverse);
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function showErr(id, show) {
-  var el = document.getElementById(id+'Err');
-  var inp = document.getElementById(id);
-  if(el) el.style.display = show?'block':'none';
-  if(inp) { if(show) inp.classList.add('err'); else inp.classList.remove('err'); }
-}
-
-function goNext(step) {
-  if(step===1) {
-    if(!document.querySelector('input[name="kurs"]:checked')) {
-      document.getElementById('kursErr').style.display='block'; return;
-    }
-    document.getElementById('kursErr').style.display='none';
-  }
-  if(step===2) {
-    var ok=true;
-    ['vorname','nachname','geburt','strasse','plz','ort','telefon'].forEach(function(f){
-      var empty=!document.getElementById(f)||!document.getElementById(f).value.trim();
-      showErr(f,empty); if(empty)ok=false;
-    });
-    var em=document.getElementById('email').value.trim();
-    var em2=document.getElementById('email2').value.trim();
-    var emOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
-    showErr('email',!emOk); if(!emOk)ok=false;
-    showErr('email2',em!==em2); if(em!==em2)ok=false;
-    if(!ok)return;
-  }
-  if(step===3) {
-    var ok=true;
-    ['konto','iban'].forEach(function(f){
-      var empty=!document.getElementById(f).value.trim();
-      showErr(f,empty); if(empty)ok=false;
-    });
-    if(!document.getElementById('sepa').checked){
-      document.getElementById('sepaErr').style.display='block'; ok=false;
-    } else { document.getElementById('sepaErr').style.display='none'; }
-    if(!document.getElementById('agb').checked){
-      document.getElementById('agbErr').style.display='block'; ok=false;
-    } else { document.getElementById('agbErr').style.display='none'; }
-    if(!ok)return;
-  }
-  if(step===4) {
-    if(!document.querySelector('input[name="quelle"]:checked')){
-      document.getElementById('quelleErr').style.display='block'; return;
-    }
-    document.getElementById('quelleErr').style.display='none';
-    buildSummary();
-  }
-  currentStep = step+1;
-  showStep(currentStep, false);
-}
-
-function goBack(step) {
-  currentStep = step-1;
-  showStep(currentStep, true);
-}
-
-function toggleCheck(item, id) {
-  var cb=document.getElementById(id);
+function msfToggleCheck(label){
+  var cb=label.querySelector('input[type=checkbox]');
   cb.checked=!cb.checked;
-  item.classList.toggle('on',cb.checked);
+  label.classList.toggle('checked',cb.checked);
 }
-
-function buildSummary() {
-  var kurs = document.querySelector('input[name="kurs"]:checked');
-  var quelle = document.querySelector('input[name="quelle"]:checked');
-  var rows = [
-    ['Kurs', kurs ? kurs.value : ''],
-    ['Vorname', document.getElementById('vorname').value],
-    ['Nachname', document.getElementById('nachname').value],
-    ['Geburtsdatum', document.getElementById('geburt').value],
-    ['Straße', document.getElementById('strasse').value],
-    ['PLZ / Ort', document.getElementById('plz').value+' '+document.getElementById('ort').value],
-    ['Telefon', document.getElementById('telefon').value],
-    ['E-Mail', document.getElementById('email').value],
-    ['Kontoinhaber', document.getElementById('konto').value],
-    ['Wie gefunden', quelle ? quelle.value : ''],
-  ];
-  var html = rows.map(function(r){
-    return '<div class="sum-row"><div class="sum-label">'+r[0]+'</div><div class="sum-value">'+r[1]+'</div></div>';
-  }).join('');
-  document.getElementById('summaryContent').innerHTML = html;
+function msfSelRadio(label){
+  document.querySelectorAll('#msf .msf-radio').forEach(function(l){l.classList.remove('sel');});
+  label.classList.add('sel');
 }
-
-var WEBHOOK = 'https://web-production-4ed68.up.railway.app/submit';
-
-document.getElementById('msForm').addEventListener('submit', async function(e) {
+function msfErr(id,show){
+  var el=document.getElementById('msf'+id+'Err');
+  var inp=document.getElementById('msf'+id);
+  if(el)el.style.display=show?'block':'none';
+  if(inp){if(show)inp.classList.add('err');else inp.classList.remove('err');}
+}
+function msfValidate(){
+  var ok=true;
+  if(!document.querySelector('#msfForm input[name="kurs"]:checked')){document.getElementById('msfKursErr').style.display='block';ok=false;}
+  else{document.getElementById('msfKursErr').style.display='none';}
+  ['Vorname','Nachname','Geburt','Strasse','Plz','Ort','Telefon','Konto','Iban'].forEach(function(f){
+    var el=document.getElementById('msf'+f);var empty=!el||!el.value.trim();msfErr(f,empty);if(empty)ok=false;
+  });
+  var em=document.getElementById('msfEmail').value.trim();
+  var em2=document.getElementById('msfEmail2').value.trim();
+  var emOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
+  msfErr('Email',!emOk);if(!emOk)ok=false;
+  msfErr('Email2',em!==em2);if(em!==em2)ok=false;
+  var sepa=document.getElementById('msfSepa').checked;
+  document.getElementById('msfSepaErr').style.display=sepa?'none':'block';if(!sepa)ok=false;
+  var agb=document.getElementById('msfAgb').checked;
+  document.getElementById('msfAgbErr').style.display=agb?'none':'block';if(!agb)ok=false;
+  if(!document.querySelector('#msfForm input[name="quelle"]:checked')){document.getElementById('msfQuelleErr').style.display='block';ok=false;}
+  else{document.getElementById('msfQuelleErr').style.display='none';}
+  return ok;
+}
+var WEBHOOK='https://web-production-4ed68.up.railway.app/submit';
+document.getElementById('msfForm').addEventListener('submit',async function(e){
   e.preventDefault();
-  var btn=document.getElementById('submitBtn');
-  var txt=document.getElementById('btnTxt');
-  var spin=document.getElementById('spinner');
-  btn.disabled=true; txt.style.display='none'; spin.style.display='block';
-
-  var kurs=document.querySelector('input[name="kurs"]:checked');
-  var quelle=document.querySelector('input[name="quelle"]:checked');
-
+  if(!msfValidate())return;
+  var btn=document.getElementById('msfBtn');
+  var txt=document.getElementById('msfBtnTxt');
+  var spin=document.getElementById('msfSpinner');
+  btn.disabled=true;txt.style.display='none';spin.style.display='block';
   var data={
-    kurs: kurs?kurs.value:'',
-    vorname: document.getElementById('vorname').value.trim(),
-    nachname: document.getElementById('nachname').value.trim(),
-    geburtsdatum: document.getElementById('geburt').value,
-    strasse: document.getElementById('strasse').value.trim(),
-    plz: document.getElementById('plz').value.trim(),
-    ort: document.getElementById('ort').value.trim(),
-    erziehungsber: document.getElementById('erziehungsber').value.trim(),
-    telefon: document.getElementById('telefon').value.trim(),
-    email: document.getElementById('email').value.trim(),
-    kontoinhaber: document.getElementById('konto').value.trim(),
-    iban: document.getElementById('iban').value.trim(),
-    quelle: quelle?quelle.value:'',
-    zeitstempel: new Date().toISOString()
+    kurs:document.querySelector('#msfForm input[name="kurs"]:checked').value,
+    vorname:document.getElementById('msfVorname').value.trim(),
+    nachname:document.getElementById('msfNachname').value.trim(),
+    geburtsdatum:document.getElementById('msfGeburt').value,
+    strasse:document.getElementById('msfStrasse').value.trim(),
+    plz:document.getElementById('msfPlz').value.trim(),
+    ort:document.getElementById('msfOrt').value.trim(),
+    erziehungsber:document.querySelector('#msfForm textarea').value.trim(),
+    telefon:document.getElementById('msfTelefon').value.trim(),
+    email:document.getElementById('msfEmail').value.trim(),
+    kontoinhaber:document.getElementById('msfKonto').value.trim(),
+    iban:document.getElementById('msfIban').value.trim(),
+    quelle:document.querySelector('#msfForm input[name="quelle"]:checked').value,
+    zeitstempel:new Date().toISOString()
   };
-
-  try {
-    var resp=await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-    if(resp.ok){
-      document.getElementById('msForm').style.display='none';
-      document.getElementById('progressWrap').style.display='none';
-      document.getElementById('successCard').style.display='block';
-      window.scrollTo({top:0,behavior:'smooth'});
-    } else { throw new Error(); }
-  } catch(err) {
-    btn.disabled=false; txt.style.display='flex'; spin.style.display='none';
-    alert('Fehler beim Absenden. Bitte versuche es erneut.');
+  try{
+    await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    document.getElementById('msfForm').style.display='none';
+    document.getElementById('msfSuccess').style.display='block';
+  }catch(err){
+    btn.disabled=false;txt.style.display='block';spin.style.display='none';
+    alert('Fehler beim Absenden. Bitte versuche es erneut oder kontaktiere uns direkt.');
   }
 });
 </script>
+
 </body>
 </html>
