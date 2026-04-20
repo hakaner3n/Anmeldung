@@ -10,14 +10,14 @@
 <style>
 #msf,#msf *{all:unset;box-sizing:border-box!important}
 #msf{display:block;max-width:760px;margin:0 auto;padding:0 20px 60px;font-family:'Source Sans 3',sans-serif!important;font-size:16px;color:#2c2c2c;line-height:1.6}
-#msf h1{display:block;text-align:center;font-family:'Playfair Display',serif!important;font-size:2.2rem;font-weight:700;color:#144d57;margin-bottom:10px}
+#msf h1{display:block;text-align:center;font-family:'Playfair Display',serif!important;font-size:1.6rem;font-weight:700;color:#144d57;margin-bottom:10px}
 #msf h2{display:block;font-family:'Playfair Display',serif!important;font-size:1.25rem;font-weight:700;color:#144d57;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #ccd8da}
 #msf p{display:block;margin-bottom:8px;font-size:0.95rem;color:#2c2c2c}
 #msf a{color:#1a5f6a;font-weight:600;text-decoration:underline;cursor:pointer}
 #msf hr{display:block;border:none;border-top:1px solid #ccd8da;margin:28px 0}
-#msf .msf-header{text-align:center;padding:36px 0 24px;border-bottom:2px solid #ccd8da;margin-bottom:24px}
+#msf .msf-header{text-align:center;padding:24px 0 20px;border-bottom:2px solid #ccd8da;margin-bottom:24px}
 #msf .msf-header p{color:#666;font-size:1rem}
-#msf .msf-notice{display:block;background:#e8f4f6;border-left:3px solid #1a5f6a;padding:12px 16px;border-radius:0 6px 6px 0;margin-bottom:28px;font-size:0.92rem}
+
 #msf .msf-section{display:block;margin-bottom:32px}
 #msf .msf-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
 #msf .msf-grid.full{grid-template-columns:1fr}
@@ -36,9 +36,16 @@
 #msf .msf-rlabel{font-size:0.95rem;color:#2c2c2c;line-height:1.4;display:block}
 #msf .msf-price{display:inline-block!important;background:#1a5f6a!important;color:#fff!important;font-size:0.78rem!important;font-weight:600!important;padding:2px 8px!important;border-radius:20px!important;margin-left:6px!important}
 #msf .msf-small{display:block;font-size:0.82rem;color:#888;margin-top:2px}
-#msf .msf-check{display:flex!important;align-items:flex-start!important;gap:12px!important;padding:13px 15px!important;border:1.5px solid #ccd8da!important;border-radius:8px!important;cursor:pointer!important;margin-bottom:10px!important;background:#fff!important;width:100%!important}
+#msf .msf-check{display:flex!important;align-items:flex-start!important;gap:14px!important;padding:14px 15px!important;border:1.5px solid #ccd8da!important;border-radius:8px!important;cursor:pointer!important;margin-bottom:10px!important;background:#fff!important;width:100%!important;transition:border-color 0.2s,background 0.2s!important}
 #msf .msf-check:hover{border-color:#1a5f6a!important;background:#e8f4f6!important}
-#msf .msf-check input[type=checkbox]{width:18px!important;height:18px!important;margin-top:3px!important;accent-color:#1a5f6a!important;flex-shrink:0!important;cursor:pointer!important;display:inline!important;padding:0!important;border:none!important}
+#msf .msf-check input[type=checkbox]{display:none!important}
+#msf .msf-checkmark{width:24px!important;height:24px!important;min-width:24px!important;border:2px solid #ccd8da!important;border-radius:5px!important;background:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;margin-top:1px!important;transition:all 0.15s!important;flex-shrink:0!important}
+#msf .msf-checkmark svg{display:none!important}
+#msf .msf-check input[type=checkbox]:checked ~ .msf-checkmark,
+#msf .msf-check.checked .msf-checkmark{border-color:#1a5f6a!important;background:#1a5f6a!important}
+#msf .msf-check input[type=checkbox]:checked ~ .msf-checkmark svg,
+#msf .msf-check.checked .msf-checkmark svg{display:block!important}
+#msf .msf-check.checked{border-color:#1a5f6a!important;background:#e8f4f6!important}
 #msf .msf-clabel{font-size:0.93rem;color:#2c2c2c;line-height:1.5;display:block}
 #msf .msf-clabel a{color:#1a5f6a;font-weight:600;text-decoration:underline}
 #msf .msf-src{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:6px}
@@ -55,13 +62,13 @@
 #msf .msf-success{display:none;text-align:center;padding:48px 24px;background:#e8f4f6;border-radius:12px;margin-top:24px}
 #msf .msf-success h2{font-family:'Playfair Display',serif!important;color:#144d57;margin-bottom:10px;font-size:1.4rem}
 #msf .msf-tick{font-size:3rem;margin-bottom:12px;display:block}
-@media(max-width:560px){#msf .msf-grid{grid-template-columns:1fr}#msf .msf-src{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){#msf .msf-grid{grid-template-columns:1fr!important}#msf .msf-src{grid-template-columns:1fr 1fr}#msf{padding:0 14px 40px}#msf h1{font-size:1.4rem!important}#msf h2{font-size:1.1rem!important}#msf input[type=text],#msf input[type=email],#msf input[type=date],#msf textarea{font-size:1rem!important;padding:13px 14px!important}#msf .msf-radio{padding:14px!important}#msf .msf-check{padding:14px!important}#msf .msf-btn{padding:16px!important;font-size:1rem!important}#msf .msf-header{padding:20px 0 16px}}
 </style>
 
 <div id="msf">
   <div class="msf-header">
     <h1>Verbindliche Anmeldung</h1>
-    <p>Zum Mitmachen einfach das Formular ausfüllen und abschicken. <strong>Wir freuen uns auf Dich.</strong></p>
+    <p>Zum Mitmachen einfach das Formular ausfüllen und abschicken.</p><p style="margin-top:10px;font-weight:600;color:#144d57;font-size:1rem">Wir freuen uns auf Dich.</p>
   </div>
 
   <form id="msfForm" novalidate>
@@ -168,13 +175,15 @@
           <span class="msf-err" id="msfIbanErr">Bitte IBAN eingeben.</span>
         </div>
       </div>
-      <label class="msf-check">
+      <label class="msf-check" onclick="msfToggleCheck(this)">
         <input type="checkbox" name="sepa" id="msfSepa">
+        <span class="msf-checkmark"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <span class="msf-clabel">Hiermit ermächtige ich die Musikschule Hückelhoven, künftig den jeweils zum 01. eines jeden Monats fälligen Betrag für den Musikunterricht von meinem Girokonto per SEPA-Lastschrift einzuziehen. Ich kann die Einzugsermächtigung jederzeit widerrufen. Die Gläubiger-ID-Nr. lautet: <strong>DE64ZZZ00002060164</strong></span>
       </label>
       <span class="msf-err" id="msfSepaErr">Bitte SEPA-Mandat bestätigen.</span>
-      <label class="msf-check">
+      <label class="msf-check" onclick="msfToggleCheck(this)">
         <input type="checkbox" name="agb" id="msfAgb">
+        <span class="msf-checkmark"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <span class="msf-clabel">Ich akzeptiere die <a href="https://www.musikschule-hueckelhoven.de/j/shop/terms" target="_blank">Allgemeinen Geschäftsbedingungen (AGB)</a> sowie die <a href="https://www.musikschule-hueckelhoven.de/j/shop/withdrawal" target="_blank">Widerrufsbelehrung</a> der Musikschule, die ich gelesen und verstanden habe.</span>
       </label>
       <span class="msf-err" id="msfAgbErr">Bitte AGB & Widerrufsbelehrung akzeptieren.</span>
@@ -215,6 +224,11 @@
 </div>
 
 <script>
+function msfToggleCheck(label){
+  var cb=label.querySelector('input[type=checkbox]');
+  cb.checked=!cb.checked;
+  label.classList.toggle('checked',cb.checked);
+}
 function msfSelRadio(label){
   document.querySelectorAll('#msf .msf-radio').forEach(function(l){l.classList.remove('sel');});
   label.classList.add('sel');
