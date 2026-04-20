@@ -284,7 +284,7 @@ document.getElementById('msfForm').addEventListener('submit',async function(e){
     zeitstempel:new Date().toISOString()
   };
   try{
-    await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),mode:'no-cors'});
+    await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
     document.getElementById('msfForm').style.display='none';
     document.getElementById('msfSuccess').style.display='block';
   }catch(err){
