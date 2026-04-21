@@ -3,456 +3,440 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0">
-<title>Verbindliche Anmeldung – Musikschule Hückelhoven</title>
+<title>Verbindliche Anmeldung - Musikschule Hueckelhoven</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{overflow-x:hidden;max-width:100%}body{overflow-x:hidden;overflow-y:scroll;max-width:100%;position:relative}
-body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;color:#2c2c2c;line-height:1.6;padding:0 0 60px;overflow-x:hidden;-webkit-text-size-adjust:100%}
-
-.form-wrap{width:100%;max-width:100%;margin:0;padding:0 12px;overflow:visible;box-sizing:border-box}
-
-.form-header{text-align:center;padding:36px 0 28px;border-bottom:1px solid #ccd8da;margin-bottom:28px}
-.form-header .icon{width:56px;height:56px;border-radius:50%;background:#e8f4f6;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
-.form-header .school{font-size:12px;font-weight:600;color:#1a5f6a;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
-.form-header h1{font-family:'Playfair Display',serif;font-size:1.7rem;color:#144d57;margin-bottom:6px}
-.form-header .sub{font-size:14px;color:#888;margin-bottom:20px}
-.trust-row{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:6px;font-size:13px;color:#666}
-.trust-item svg{flex-shrink:0}
-
-.section{background:#fff;border:1px solid #ccd8da;border-radius:10px;padding:22px 24px;margin-bottom:16px}
-.section-label{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px}
-
-.kurs-option{border:1.5px solid #ccd8da;border-radius:8px;padding:14px 16px;margin-bottom:8px;cursor:pointer;background:#fff;transition:all 0.15s;display:flex;align-items:center;gap:14px;user-select:none}
-.kurs-option:last-child{margin-bottom:0}
-.kurs-option.selected{border-color:#1a5f6a;background:#e8f4f6}
-.kurs-option.fixed{cursor:default}
-.radio-dot{width:18px;height:18px;border-radius:50%;border:2px solid #ccd8da;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.15s}
-.kurs-option.selected .radio-dot{border-color:#1a5f6a;background:#1a5f6a}
-.radio-inner{width:6px;height:6px;border-radius:50%;background:white;display:none}
-.kurs-option.selected .radio-inner{display:block}
-.kurs-info{flex:1}
+html{overflow-x:hidden;max-width:100%}
+body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;color:#2c2c2c;line-height:1.6;overflow-x:hidden;overflow-y:scroll;max-width:100%}
+.wrap{max-width:520px;margin:0 auto;padding:20px 14px 60px}
+.form-header{text-align:center;padding-bottom:20px;border-bottom:1px solid #ccd8da;margin-bottom:20px}
+.form-header .icon{width:52px;height:52px;border-radius:50%;background:#e8f4f6;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.form-header .school{font-size:11px;font-weight:600;color:#1a5f6a;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px}
+.form-header h1{font-family:'Playfair Display',serif;font-size:1.5rem;color:#144d57;margin-bottom:4px}
+.form-header .sub{font-size:13px;color:#888;margin-bottom:14px}
+.trust-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:5px;font-size:12px;color:#666}
+.progress-wrap{margin-bottom:20px}
+.progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.progress-label{font-size:12px;color:#888}
+.progress-pct{font-size:12px;font-weight:600;color:#1a5f6a}
+.progress-bar{height:6px;background:#e0e0e0;border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;background:#1a5f6a;border-radius:99px;transition:width 0.4s ease}
+.card{background:#fff;border:1px solid #ccd8da;border-radius:12px;padding:20px}
+.card-title{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:14px}
+.step{display:none}
+.step.active{display:block}
+.kurs-opt{border:1.5px solid #ccd8da;border-radius:8px;padding:13px 15px;margin-bottom:8px;cursor:pointer;background:#fff;display:flex;align-items:center;gap:12px;touch-action:manipulation;user-select:none}
+.kurs-opt.sel{border-color:#1a5f6a;background:#e8f4f6}
+.kurs-opt.fixed{cursor:default}
+.rdot{width:18px;height:18px;border-radius:50%;border:2px solid #ccd8da;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.15s}
+.kurs-opt.sel .rdot{border-color:#1a5f6a;background:#1a5f6a}
+.rdot-inner{width:6px;height:6px;border-radius:50%;background:white;display:none}
+.kurs-opt.sel .rdot-inner{display:block}
+.kurs-info{flex:1;min-width:0}
 .kurs-title{font-size:14px;font-weight:600;color:#2c2c2c;white-space:nowrap}
-.kurs-option.selected .kurs-title{color:#085041}
-.kurs-sub{font-size:13px;color:#888;margin-top:2px}
-.kurs-option.selected .kurs-sub{color:#0F6E56}
-.kurs-badge{background:#e8f4f6;color:#144d57;font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
-.kurs-option.selected .kurs-badge{background:#1a5f6a;color:#fff}
-.kurs-err{display:none;color:#c0392b;font-size:13px;margin-top:6px}
-
-.field-grid{display:grid;gap:12px;margin-bottom:12px}
-.field-grid.cols2{grid-template-columns:1fr 1fr}
-.field-grid.cols3{grid-template-columns:2fr 1fr 1fr}
-.field-grid.cols1{grid-template-columns:1fr}
-.field-grid:last-child{margin-bottom:0}
-.field{display:flex;flex-direction:column;gap:4px}
-.field label{font-size:12px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:0.04em}
-.field .star{color:#c0392b}
-.field input,.field textarea{width:100%;padding:10px 13px;border:1.5px solid #ccd8da;border-radius:6px;font-family:'Source Sans 3',sans-serif;font-size:15px;color:#2c2c2c;background:#fff;outline:none;transition:border-color 0.15s}
+.kurs-opt.sel .kurs-title{color:#085041}
+.kurs-sub{font-size:12px;color:#888;margin-top:2px}
+.kurs-opt.sel .kurs-sub{color:#0F6E56}
+.badge{background:#e8f4f6;color:#144d57;font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.kurs-opt.sel .badge{background:#1a5f6a;color:#fff}
+.field-group{margin-bottom:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid13{display:grid;grid-template-columns:1fr 2fr;gap:10px}
+.field label{display:block;font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px}
+.star{color:#c0392b}
+.field input,.field textarea{width:100%;padding:10px 13px;border:1.5px solid #ccd8da;border-radius:7px;font-family:'Source Sans 3',sans-serif;font-size:15px;color:#2c2c2c;background:#fff;outline:none;transition:border-color 0.15s;-webkit-appearance:none}
 .field input:focus,.field textarea:focus{border-color:#1a5f6a;box-shadow:0 0 0 3px rgba(26,95,106,0.1)}
-.field input.err,.field textarea.err{border-color:#c0392b}
-.field textarea{min-height:70px;resize:vertical}
-.field-err{display:none;color:#c0392b;font-size:12px}
-
-.check-wrap{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;border:1.5px solid #ccd8da;border-radius:8px;cursor:pointer;margin-bottom:8px;background:#fff;transition:all 0.15s}
-.check-wrap:last-of-type{margin-bottom:0}
-.check-wrap:hover{border-color:#1a5f6a;background:#f0f9fa}
-.check-wrap.checked{border-color:#1a5f6a;background:#e8f4f6}
-.checkmark{width:22px;height:22px;min-width:22px;border:2px solid #ccd8da;border-radius:5px;background:#fff;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all 0.15s;flex-shrink:0}
-.check-wrap.checked .checkmark{border-color:#1a5f6a;background:#1a5f6a}
+.field input.err{border-color:#c0392b}
+.field textarea{resize:none;height:64px}
+.field-note{font-size:11px;color:#aaa;margin-top:3px}
+.field-err{display:none;color:#c0392b;font-size:12px;margin-top:3px}
+.check-row{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1.5px solid #ccd8da;border-radius:8px;cursor:pointer;margin-bottom:8px;background:#fff;touch-action:manipulation;user-select:none;transition:all 0.15s}
+.check-row.checked{border-color:#1a5f6a;background:#e8f4f6}
+.check-row input{display:none}
+.checkmark{width:20px;height:20px;min-width:20px;border:2px solid #ccd8da;border-radius:5px;background:#fff;display:flex;align-items:center;justify-content:center;margin-top:1px;flex-shrink:0;transition:all 0.15s}
+.check-row.checked .checkmark{border-color:#1a5f6a;background:#1a5f6a}
 .checkmark svg{display:none}
-.check-wrap.checked .checkmark svg{display:block}
-.check-wrap input[type=checkbox]{display:none}
-.check-text{font-size:14px;color:#2c2c2c;line-height:1.5}
+.check-row.checked .checkmark svg{display:block}
+.check-text{font-size:13px;color:#2c2c2c;line-height:1.5}
 .check-text a{color:#1a5f6a;font-weight:600}
 .check-err{display:none;color:#c0392b;font-size:12px;margin-top:4px}
-
-.quelle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
-.quelle-opt{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1.5px solid #ccd8da;border-radius:6px;cursor:pointer;font-size:14px;background:#fff;transition:all 0.15s;user-select:none}
-.quelle-opt:hover{border-color:#1a5f6a;background:#f0f9fa}
-.quelle-opt.selected{border-color:#1a5f6a;background:#e8f4f6;color:#085041;font-weight:600}
-.quelle-dot{width:16px;height:16px;border-radius:50%;border:2px solid #ccd8da;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.quelle-opt.selected .quelle-dot{border-color:#1a5f6a;background:#1a5f6a}
-.quelle-inner{width:5px;height:5px;border-radius:50%;background:white;display:none}
-.quelle-opt.selected .quelle-inner{display:block}
-.quelle-err{display:none;color:#c0392b;font-size:12px;margin-top:6px}
-
-.submit-wrap{text-align:center;margin-top:8px}
-.submit-btn{display:inline-block;background:#1a5f6a;color:#fff;border:none;padding:15px 48px;font-family:'Source Sans 3',sans-serif;font-size:16px;font-weight:600;border-radius:7px;cursor:pointer;width:100%;max-width:360px;transition:background 0.15s}
-.submit-btn:hover{background:#144d57}
-.submit-btn:disabled{background:#aaa;cursor:not-allowed}
-.submit-note{font-size:12px;color:#aaa;margin-top:10px}
-.progress-wrap{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:1000;background:#fff;border:1px solid #e8e8e8;border-right:none;border-radius:10px 0 0 10px;padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:0}
-.progress-spacer{display:none}
-.progress-steps{display:flex;flex-direction:column;align-items:center;position:relative;gap:0}
-.progress-steps::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:#e8f4f6;z-index:0;transform:translateX(-50%)}
-.progress-line{position:absolute;left:50%;top:0;width:2px;background:#1a5f6a;z-index:1;transform:translateX(-50%);transition:height 0.4s ease}
-.p-step{width:26px;height:26px;border-radius:50%;border:2px solid #ccd8da;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#ccd8da;z-index:2;transition:all 0.3s;flex-shrink:0;margin:6px 0}
-.p-step.active{border-color:#1a5f6a;color:#1a5f6a}
-.p-step.done{border-color:#1a5f6a;background:#1a5f6a;color:#fff}
-.progress-label{display:none}
-.spinner{display:none;width:20px;height:20px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto}
+.summary-box{background:#f7fafb;border:1px solid #e8f4f6;border-radius:8px;padding:12px 14px;margin-bottom:14px}
+.summary-title{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px}
+.summary-row{display:flex;justify-content:space-between;margin-bottom:4px}
+.summary-row span:first-child{font-size:13px;color:#888}
+.summary-row span:last-child{font-size:13px;font-weight:500;color:#2c2c2c}
+.summary-divider{border:none;border-top:1px solid #e8f4f6;margin:8px 0}
+.summary-total{display:flex;justify-content:space-between;align-items:center}
+.summary-total span:first-child{font-size:13px;font-weight:600;color:#2c2c2c}
+.summary-total span:last-child{font-size:16px;font-weight:600;color:#1a5f6a}
+.sepa-text{background:#f7fafb;border:1px solid #e8f4f6;border-radius:8px;padding:12px 14px;margin-bottom:12px;font-size:13px;color:#444;line-height:1.6}
+.btn-row{display:flex;gap:10px;margin-top:20px}
+.btn-back{flex:1;padding:13px;border:1.5px solid #ccd8da;border-radius:8px;background:#fff;font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:500;color:#666;cursor:pointer;touch-action:manipulation;text-align:center}
+.btn-next{flex:2;padding:13px;border:none;border-radius:8px;background:#1a5f6a;font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:600;color:#fff;cursor:pointer;touch-action:manipulation;transition:background 0.15s}
+.btn-next:hover{background:#144d57}
+.btn-next:disabled{background:#aaa;cursor:not-allowed}
+.btn-note{text-align:center;font-size:11px;color:#aaa;margin-top:10px}
+.spinner{display:none;width:18px;height:18px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-.success{display:none;text-align:center;padding:48px 24px;background:#e8f4f6;border-radius:12px;margin-top:24px}
-.success h2{font-family:'Playfair Display',serif;color:#144d57;margin-bottom:10px;font-size:1.4rem}
-.tick{font-size:3rem;margin-bottom:12px;display:block}
-
-@media(max-width:580px){
-  .field-grid.cols2,.field-grid.cols3{grid-template-columns:1fr}
-  .trust-row{gap:16px}
-  .form-header h1{font-size:1.4rem}
-}
+.success{display:none;text-align:center;padding:40px 20px;background:#e8f4f6;border-radius:12px}
+.success-tick{width:60px;height:60px;border-radius:50%;background:#1a5f6a;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.success h2{font-family:'Playfair Display',serif;color:#144d57;font-size:1.3rem;margin-bottom:8px}
+.success .success-sub{font-size:15px;color:#1a5f6a;font-weight:600;margin-bottom:6px}
+.success p{font-size:14px;color:#666}
+@media(max-width:400px){.grid2{grid-template-columns:1fr}.trust-row{gap:12px}}
 </style>
 </head>
 <body>
-
-<div class="form-wrap">
+<div class="wrap">
 
   <div class="form-header">
     <div class="icon">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a5f6a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1a5f6a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
     </div>
     <p class="school">Musikschule Hückelhoven</p>
     <h1>Verbindliche Anmeldung</h1>
     <p class="sub">Bağlama-Unterricht · Düsseldorf</p>
     <div class="trust-row">
       <span class="trust-item">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1a5f6a" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a5f6a" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
         14 Tage Widerrufsrecht
       </span>
       <span class="trust-item">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1a5f6a" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a5f6a" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
         Kein Vorwissen nötig
       </span>
     </div>
   </div>
 
   <div class="progress-wrap" id="progressWrap">
-    <div class="progress-steps">
-      <div class="p-step done" id="ps1">1</div>
-      <div class="p-step active" id="ps2">2</div>
-      <div class="p-step" id="ps3">3</div>
-      <div class="p-step" id="ps4">4</div>
-      <div class="p-step" id="ps5">5</div>
-      <div class="progress-line" id="progressLine" style="width:25%"></div>
+    <div class="progress-top">
+      <span class="progress-label" id="progLabel">Schritt 1 von 5 · Kursstart</span>
+      <span class="progress-pct" id="progPct">20%</span>
     </div>
-    <div class="progress-label" id="progressLabel">Schritt 1 von 5 · Kursstart</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progFill" style="width:20%"></div>
+    </div>
   </div>
 
-  <div class="progress-spacer"></div>
-  <form id="msfForm" novalidate>
-
-    <div class="section">
-      <p class="section-label">1 · Kursstart</p>
-      <div class="kurs-option fixed selected" id="kursstart">
-        <div class="radio-dot"><div class="radio-inner"></div></div>
+  <div id="step1" class="step active">
+    <div class="card">
+      <p class="card-title">Kursstart</p>
+      <div class="kurs-opt fixed sel" style="margin-bottom:16px">
+        <div class="rdot"><div class="rdot-inner"></div></div>
         <div class="kurs-info">
           <div class="kurs-title">Sonntag, 03. Mai 2026</div>
           <div class="kurs-sub">13:50–15:10 Uhr · Kirchstr. 20, 40227 Düsseldorf</div>
         </div>
       </div>
-    </div>
-
-    <div class="section">
-      <p class="section-label">2 · Leihinstrument</p>
-      <div class="kurs-option selected" onclick="selectLeih(this,'D\'dorf | 03/05/26 | 13:50-15:10 | ohne Leih | 68')" id="leih1">
-        <div class="radio-dot"><div class="radio-inner"></div></div>
+      <p class="card-title">Leihinstrument</p>
+      <div class="kurs-opt sel" id="leih1" onclick="selLeih('leih1','leih2','ohne',68)">
+        <div class="rdot"><div class="rdot-inner"></div></div>
         <div class="kurs-info">
           <div class="kurs-title">Ohne Leihinstrument</div>
           <div class="kurs-sub">Du bringst deine eigene Bağlama mit</div>
         </div>
-        <div class="kurs-badge">68 € / mtl.</div>
+        <div class="badge">68 € / mtl.</div>
       </div>
-      <div class="kurs-option" onclick="selectLeih(this,'D\'dorf | 03/05/26 | 13:50-15:10 | mit Leih | 80')" id="leih2">
-        <div class="radio-dot"><div class="radio-inner"></div></div>
+      <div class="kurs-opt" id="leih2" onclick="selLeih('leih2','leih1','mit',80)">
+        <div class="rdot"><div class="rdot-inner"></div></div>
         <div class="kurs-info">
           <div class="kurs-title">Mit Leihinstrument</div>
-          <div class="kurs-sub">Wir stellen dir eine Bağlama für den Unterricht</div>
+          <div class="kurs-sub">Wir leihen dir eine Bağlama</div>
         </div>
-        <div class="kurs-badge">80 € / mtl.</div>
+        <div class="badge">80 € / mtl.</div>
       </div>
-      <span class="kurs-err" id="leihErr">Bitte eine Option auswählen.</span>
-      <input type="hidden" name="kurs" id="msfKurs" value="D'dorf | 03/05/26 | 13:50-15:10 | ohne Leih | 68">
+      <div class="btn-row">
+        <button class="btn-next" style="flex:1" onclick="goTo(2)">Weiter →</button>
+      </div>
     </div>
+  </div>
 
-    <div class="section">
-      <p class="section-label">3 · Angaben zur Person</p>
-      <div class="field-grid cols2">
+  <div id="step2" class="step">
+    <div class="card">
+      <p class="card-title">Angaben zur Person</p>
+      <div class="field-group grid2">
         <div class="field">
-          <label>Vorname des Schülers <span class="star">*</span></label>
-          <input type="text" name="vorname" id="msfVorname" placeholder="Vorname">
-          <span class="field-err" id="msfVornameErr">Bitte Vorname eingeben.</span>
+          <label>Vorname <span class="star">*</span></label>
+          <input type="text" id="vorname" placeholder="Vorname">
+          <span class="field-err" id="vornameErr">Pflichtfeld</span>
         </div>
         <div class="field">
-          <label>Familienname <span class="star">*</span></label>
-          <input type="text" name="nachname" id="msfNachname" placeholder="Nachname">
-          <span class="field-err" id="msfNachnameErr">Bitte Nachname eingeben.</span>
+          <label>Nachname <span class="star">*</span></label>
+          <input type="text" id="nachname" placeholder="Nachname">
+          <span class="field-err" id="nachnameErr">Pflichtfeld</span>
         </div>
       </div>
-      <div class="field-grid cols2">
+      <div class="field-group grid2">
         <div class="field">
           <label>Geburtsdatum <span class="star">*</span></label>
-          <input type="text" name="geburtsdatum" id="msfGeburt" placeholder="__.__.____" inputmode="numeric" maxlength="10">
-          <span class="field-err" id="msfGeburtErr">Bitte Geburtsdatum eingeben.</span>
+          <input type="text" id="geburtsdatum" placeholder="__.__.____" inputmode="numeric" maxlength="10">
+          <span class="field-err" id="geburtErr">Pflichtfeld</span>
         </div>
         <div class="field">
           <label>Telefon <span class="star">*</span></label>
-          <input type="text" name="telefon" id="msfTelefon" placeholder="01234 56789">
-          <span class="field-err" id="msfTelefonErr">Bitte Telefonnummer eingeben.</span>
+          <input type="text" id="telefon" placeholder="01234 56789">
+          <span class="field-err" id="telefonErr">Pflichtfeld</span>
         </div>
       </div>
-      <div class="field-grid cols1">
+      <div class="field-group">
         <div class="field">
           <label>Erziehungsberechtigter (falls unter 18)</label>
-          <input type="text" name="erziehungsber" id="msfErziehung" placeholder="Vor- und Nachname">
+          <input type="text" id="erziehung" placeholder="Vor- und Nachname">
         </div>
       </div>
-      <div class="field-grid cols1">
+      <div class="btn-row">
+        <button class="btn-back" onclick="goTo(1)">← Zurück</button>
+        <button class="btn-next" onclick="validateStep2()">Weiter →</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="step3" class="step">
+    <div class="card">
+      <p class="card-title">Kontakt & Adresse</p>
+      <div class="field-group">
         <div class="field">
           <label>E-Mail <span class="star">*</span></label>
-          <input type="email" name="email" id="msfEmail" placeholder="deine@email.de">
-          <span class="field-err" id="msfEmailErr">Bitte gültige E-Mail eingeben.</span>
+          <input type="email" id="email" placeholder="deine@email.de">
+          <span class="field-err" id="emailErr">Bitte gültige E-Mail eingeben</span>
         </div>
       </div>
-      <div class="field-grid cols1">
+      <div class="field-group">
         <div class="field">
           <label>E-Mail wiederholen <span class="star">*</span></label>
-          <input type="email" name="email2" id="msfEmail2" placeholder="deine@email.de">
-          <span class="field-err" id="msfEmail2Err">E-Mail-Adressen stimmen nicht überein.</span>
+          <input type="email" id="email2" placeholder="deine@email.de">
+          <span class="field-err" id="email2Err">E-Mail-Adressen stimmen nicht überein</span>
         </div>
       </div>
-      <div class="field-grid cols3">
+      <div class="field-group">
         <div class="field">
           <label>Straße & Hausnummer <span class="star">*</span></label>
-          <input type="text" name="strasse" id="msfStrasse" placeholder="Musterstraße 1">
-          <span class="field-err" id="msfStrasseErr">Bitte Adresse eingeben.</span>
+          <input type="text" id="strasse" placeholder="Musterstraße 1">
+          <span class="field-err" id="strasseErr">Pflichtfeld</span>
         </div>
+      </div>
+      <div class="field-group grid13">
         <div class="field">
           <label>PLZ <span class="star">*</span></label>
-          <input type="text" name="plz" id="msfPlz" placeholder="12345">
-          <span class="field-err" id="msfPlzErr">Bitte PLZ eingeben.</span>
+          <input type="text" id="plz" placeholder="12345">
+          <span class="field-err" id="plzErr">Pflichtfeld</span>
         </div>
         <div class="field">
           <label>Ort <span class="star">*</span></label>
-          <input type="text" name="ort" id="msfOrt" placeholder="Musterstadt">
-          <span class="field-err" id="msfOrtErr">Bitte Ort eingeben.</span>
+          <input type="text" id="ort" placeholder="Musterstadt">
+          <span class="field-err" id="ortErr">Pflichtfeld</span>
         </div>
       </div>
-
+      <div class="btn-row">
+        <button class="btn-back" onclick="goTo(2)">← Zurück</button>
+        <button class="btn-next" onclick="validateStep3()">Weiter →</button>
+      </div>
     </div>
+  </div>
 
-    <div class="section">
-      <p class="section-label">4 · SEPA-Lastschriftmandat</p>
-      <div class="field-grid cols2">
+  <div id="step4" class="step">
+    <div class="card">
+      <p class="card-title">Bankdaten & SEPA</p>
+      <div class="field-group">
         <div class="field">
           <label>Kontoinhaber <span class="star">*</span></label>
-          <input type="text" name="kontoinhaber" id="msfKonto" placeholder="Vor- und Nachname">
-          <span class="field-err" id="msfKontoErr">Bitte Kontoinhaber eingeben.</span>
+          <input type="text" id="kontoinhaber" placeholder="Vor- und Nachname">
+          <span class="field-err" id="kontoErr">Pflichtfeld</span>
         </div>
+      </div>
+      <div class="field-group">
         <div class="field">
           <label>IBAN <span class="star">*</span></label>
-          <input type="text" name="iban" id="msfIban" placeholder="DE00 0000 0000 0000 0000 00" inputmode="text" maxlength="27">
-          <span class="field-err" id="msfIbanErr">Bitte IBAN eingeben.</span>
-          <span style="font-size:11px;color:#aaa;margin-top:2px">&#128274; SSL-verschlüsselt &amp; sicher</span>
+          <input type="text" id="iban" placeholder="DE00 0000 0000 0000 0000 00" inputmode="text" maxlength="27">
+          <span class="field-note">🔒 SSL-verschlüsselt & sicher</span>
+          <span class="field-err" id="ibanErr">Pflichtfeld</span>
         </div>
       </div>
-      <div style="margin-top:14px">
-        <label class="check-wrap" onclick="msfToggleCheck(this)">
-          <input type="checkbox" name="sepa" id="msfSepa">
-          <div class="checkmark"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <span class="check-text">Ich ermächtige die Musikschule Hückelhoven zur monatlichen Abbuchung per Lastschrift. Die erste Abbuchung erfolgt zum 01. des Unterrichtsbeginns. Gläubiger-ID: <strong>DE64ZZZ00002060164</strong></span>
-        </label>
-        <span class="check-err" id="msfSepaErr">Bitte SEPA-Mandat bestätigen.</span>
-        <label class="check-wrap" onclick="msfToggleCheck(this)" style="margin-top:8px">
-          <input type="checkbox" name="agb" id="msfAgb">
-          <div class="checkmark"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <span class="check-text">Ich akzeptiere die <a href="https://www.musikschule-hueckelhoven.de/j/shop/terms" target="_blank">AGB</a> sowie die <a href="https://www.musikschule-hueckelhoven.de/j/shop/withdrawal" target="_blank">Widerrufsbelehrung</a> der Musikschule.</span>
-        </label>
-        <span class="check-err" id="msfAgbErr">Bitte AGB & Widerrufsbelehrung akzeptieren.</span>
+      <div class="sepa-text">
+        Ich ermächtige die Musikschule Hückelhoven zur monatlichen Abbuchung per Lastschrift. Die erste Abbuchung erfolgt zum 01. des Unterrichtsbeginns. Gläubiger-ID: <strong>DE64ZZZ00002060164</strong>
+      </div>
+      <label class="check-row" id="sepaRow" onclick="toggleCheck('sepaRow','sepaCb')">
+        <input type="checkbox" id="sepaCb">
+        <div class="checkmark"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="check-text">Ich stimme dem SEPA-Lastschriftmandat zu</span>
+      </label>
+      <span class="check-err" id="sepaErr">Bitte SEPA-Mandat bestätigen</span>
+      <div class="btn-row">
+        <button class="btn-back" onclick="goTo(3)">← Zurück</button>
+        <button class="btn-next" onclick="validateStep4()">Weiter →</button>
       </div>
     </div>
+  </div>
 
-    <div class="section">
-      <p class="section-label">5 · Wie bist Du auf uns aufmerksam geworden?</p>
-      <div class="field">
-        <textarea name="quelle" id="msfQuelle" placeholder="z.B. YouTube, Google, Instagram, Empfehlung von Freunden ..."></textarea>
+  <div id="step5" class="step">
+    <div class="card">
+      <p class="card-title">Zusammenfassung & AGB</p>
+      <div class="summary-box">
+        <p class="summary-title">Deine Auswahl</p>
+        <div class="summary-row"><span>Kursstart</span><span>So. 03. Mai 2026</span></div>
+        <div class="summary-row"><span>Uhrzeit</span><span>13:50–15:10 Uhr</span></div>
+        <div class="summary-row"><span>Ort</span><span>Kirchstr. 20, Düsseldorf</span></div>
+        <div class="summary-row"><span>Leihinstrument</span><span id="summLeih">Ohne</span></div>
+        <hr class="summary-divider">
+        <div class="summary-total"><span>Monatlich</span><span id="summPreis">68 € / mtl.</span></div>
       </div>
+      <label class="check-row" id="agbRow" onclick="toggleCheck('agbRow','agbCb')">
+        <input type="checkbox" id="agbCb">
+        <div class="checkmark"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="check-text">Ich akzeptiere die <a href="https://www.musikschule-hueckelhoven.de/j/shop/terms" target="_blank">AGB</a> sowie die <a href="https://www.musikschule-hueckelhoven.de/j/shop/withdrawal" target="_blank">Widerrufsbelehrung</a>.</span>
+      </label>
+      <span class="check-err" id="agbErr">Bitte AGB akzeptieren um fortzufahren</span>
+      <div class="field-group" style="margin-top:12px">
+        <div class="field">
+          <label>Wie bist Du auf uns aufmerksam geworden?</label>
+          <textarea id="quelle" placeholder="z.B. YouTube, Google, Empfehlung ..."></textarea>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="goTo(4)">← Zurück</button>
+        <button class="btn-next" id="submitBtn" onclick="submitForm()">
+          <span id="submitTxt">Jetzt Platz sichern</span>
+          <div class="spinner" id="submitSpinner"></div>
+        </button>
+      </div>
+      <p class="btn-note">🔒 SSL-verschlüsselt · Datenschutzerklärung</p>
     </div>
+  </div>
 
-    <div class="submit-wrap">
-      <p style="font-size:12px;color:#aaa;margin-bottom:12px">Es gilt unsere <a href="#" style="color:#1a5f6a">Datenschutzerklärung</a> · SSL-verschlüsselt</p>
-      <button type="submit" class="submit-btn" id="msfBtn">
-        <span id="msfBtnTxt">Jetzt Platz sichern</span>
-        <div class="spinner" id="msfSpinner"></div>
-      </button>
+  <div class="success" id="successMsg">
+    <div class="success-tick">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
-
-  </form>
-
-  <div class="success" id="msfSuccess">
-    <span class="tick">&#10003;</span>
     <h2>Dein Platz ist gesichert!</h2>
-    <p style="font-size:15px;color:#144d57;font-weight:600;margin-bottom:8px">Du hörst innerhalb von 24 Stunden von uns.</p>
-    <p style="font-size:14px;color:#666">Wir haben Dir eine Bestätigungs-E-Mail mit allen Unterlagen geschickt. Bitte prüfe auch Deinen Spam-Ordner.</p>
+    <p class="success-sub">Du hörst innerhalb von 24 Stunden von uns.</p>
+    <p>Wir haben Dir eine Bestätigung per E-Mail geschickt. Bitte prüfe auch Deinen Spam-Ordner.</p>
   </div>
 
 </div>
-
 <script>
-var WEBHOOK = 'https://hook.eu1.make.com/ncu8n26ptg7oq3a7hy82hfah68r828zd';
+var WEBHOOK='https://hook.eu1.make.com/ncu8n26ptg7oq3a7hy82hfah68r828zd';
+var leihTyp='ohne';
+var leihPreis=68;
+var stepLabels=['Kursstart & Leihinstrument','Angaben zur Person','Kontakt & Adresse','Bankdaten & SEPA','Zusammenfassung & AGB'];
+var stepPcts=['20%','40%','60%','80%','100%'];
 
-function selectLeih(el, val) {
-  document.querySelectorAll('#leih1,#leih2').forEach(function(o){ o.classList.remove('selected'); });
-  el.classList.add('selected');
-  document.getElementById('msfKurs').value = val;
+function goTo(n){
+  document.querySelectorAll('.step').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('step'+n).classList.add('active');
+  document.getElementById('progLabel').textContent='Schritt '+n+' von 5 · '+stepLabels[n-1];
+  document.getElementById('progPct').textContent=stepPcts[n-1];
+  document.getElementById('progFill').style.width=stepPcts[n-1];
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function msfToggleCheck(label) {
-  var cb = label.querySelector('input[type=checkbox]');
-  cb.checked = !cb.checked;
-  label.classList.toggle('checked', cb.checked);
+function selLeih(selId,otherId,typ,preis){
+  document.getElementById(selId).classList.add('sel');
+  document.getElementById(otherId).classList.remove('sel');
+  leihTyp=typ; leihPreis=preis;
+  document.getElementById('summLeih').textContent=typ==='mit'?'Mit Leihinstrument':'Ohne Leihinstrument';
+  document.getElementById('summPreis').textContent=preis+' € / mtl.';
 }
 
-function showErr(id, show) {
-  var el = document.getElementById(id);
-  if(el) el.style.display = show ? 'block' : 'none';
+function toggleCheck(rowId,cbId){
+  var cb=document.getElementById(cbId);
+  cb.checked=!cb.checked;
+  document.getElementById(rowId).classList.toggle('checked',cb.checked);
 }
 
-function fieldErr(id, errId, show) {
-  var inp = document.getElementById(id);
-  if(inp){ if(show) inp.classList.add('err'); else inp.classList.remove('err'); }
-  showErr(errId, show);
-}
+function showErr(id,show){var el=document.getElementById(id);if(el)el.style.display=show?'block':'none';}
+function fieldErr(id,errId,show){var inp=document.getElementById(id);if(inp){show?inp.classList.add('err'):inp.classList.remove('err');}showErr(errId,show);}
 
-function validate() {
-  var ok = true;
-
-  var fields = [
-    ['msfVorname','msfVornameErr'],
-    ['msfNachname','msfNachnameErr'],
-    ['msfGeburt','msfGeburtErr'],
-    ['msfTelefon','msfTelefonErr'],
-    ['msfStrasse','msfStrasseErr'],
-    ['msfPlz','msfPlzErr'],
-    ['msfOrt','msfOrtErr'],
-    ['msfKonto','msfKontoErr'],
-    ['msfIban','msfIbanErr'],
-  ];
-  fields.forEach(function(f){
-    var empty = !document.getElementById(f[0]).value.trim();
-    fieldErr(f[0], f[1], empty);
-    if(empty) ok = false;
+function validateStep2(){
+  var ok=true;
+  [['vorname','vornameErr'],['nachname','nachnameErr'],['geburtsdatum','geburtErr'],['telefon','telefonErr']].forEach(function(f){
+    var empty=!document.getElementById(f[0]).value.trim();
+    fieldErr(f[0],f[1],empty); if(empty)ok=false;
   });
-
-  var em = document.getElementById('msfEmail').value.trim();
-  var em2 = document.getElementById('msfEmail2').value.trim();
-  var emOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
-  fieldErr('msfEmail','msfEmailErr',!emOk); if(!emOk) ok=false;
-  fieldErr('msfEmail2','msfEmail2Err',em!==em2); if(em!==em2) ok=false;
-
-  var sepa = document.getElementById('msfSepa').checked;
-  showErr('msfSepaErr',!sepa); if(!sepa) ok=false;
-
-  var agb = document.getElementById('msfAgb').checked;
-  showErr('msfAgbErr',!agb); if(!agb) ok=false;
-
-
-  return ok;
+  if(ok)goTo(3);
 }
 
-document.getElementById('msfForm').addEventListener('submit', async function(e){
-  e.preventDefault();
-  if(!validate()) return;
+function validateStep3(){
+  var ok=true;
+  [['strasse','strasseErr'],['plz','plzErr'],['ort','ortErr']].forEach(function(f){
+    var empty=!document.getElementById(f[0]).value.trim();
+    fieldErr(f[0],f[1],empty); if(empty)ok=false;
+  });
+  var em=document.getElementById('email').value.trim();
+  var em2=document.getElementById('email2').value.trim();
+  var emOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
+  fieldErr('email','emailErr',!emOk); if(!emOk)ok=false;
+  fieldErr('email2','email2Err',em!==em2); if(em!==em2)ok=false;
+  if(ok)goTo(4);
+}
 
-  var btn  = document.getElementById('msfBtn');
-  var txt  = document.getElementById('msfBtnTxt');
-  var spin = document.getElementById('msfSpinner');
+function validateStep4(){
+  var ok=true;
+  [['kontoinhaber','kontoErr'],['iban','ibanErr']].forEach(function(f){
+    var empty=!document.getElementById(f[0]).value.trim();
+    fieldErr(f[0],f[1],empty); if(empty)ok=false;
+  });
+  var sepa=document.getElementById('sepaCb').checked;
+  showErr('sepaErr',!sepa); if(!sepa)ok=false;
+  if(ok)goTo(5);
+}
+
+async function submitForm(){
+  var agb=document.getElementById('agbCb').checked;
+  showErr('agbErr',!agb);
+  if(!agb)return;
+  var btn=document.getElementById('submitBtn');
+  var txt=document.getElementById('submitTxt');
+  var spin=document.getElementById('submitSpinner');
   btn.disabled=true; txt.style.display='none'; spin.style.display='block';
-
-  var data = {
-    kurs:          document.getElementById('msfKurs').value,
-    vorname:       document.getElementById('msfVorname').value.trim(),
-    nachname:      document.getElementById('msfNachname').value.trim(),
-    geburtsdatum:  document.getElementById('msfGeburt').value,
-    strasse:       document.getElementById('msfStrasse').value.trim(),
-    plz:           document.getElementById('msfPlz').value.trim(),
-    ort:           document.getElementById('msfOrt').value.trim(),
-    erziehungsber: document.getElementById('msfErziehung') ? document.getElementById('msfErziehung').value.trim() : '',
-    telefon:       document.getElementById('msfTelefon').value.trim(),
-    email:         document.getElementById('msfEmail').value.trim(),
-    kontoinhaber:  document.getElementById('msfKonto').value.trim(),
-    iban:          document.getElementById('msfIban').value.trim(),
-    quelle:        document.getElementById('msfQuelle').value.trim(),
-    zeitstempel:   new Date().toISOString()
+  var kursStr="D'dorf | 03/05/26 | 13:50-15:10 | "+leihTyp+" Leih | "+leihPreis;
+  var data={
+    kurs:kursStr,
+    vorname:document.getElementById('vorname').value.trim(),
+    nachname:document.getElementById('nachname').value.trim(),
+    geburtsdatum:document.getElementById('geburtsdatum').value.trim(),
+    telefon:document.getElementById('telefon').value.trim(),
+    erziehungsber:document.getElementById('erziehung').value.trim(),
+    email:document.getElementById('email').value.trim(),
+    strasse:document.getElementById('strasse').value.trim(),
+    plz:document.getElementById('plz').value.trim(),
+    ort:document.getElementById('ort').value.trim(),
+    kontoinhaber:document.getElementById('kontoinhaber').value.trim(),
+    iban:document.getElementById('iban').value.trim(),
+    quelle:document.getElementById('quelle').value.trim(),
+    zeitstempel:new Date().toISOString()
   };
-
-  try {
-    await fetch(WEBHOOK, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data), mode:'no-cors'});
-    document.getElementById('msfForm').style.display='none';
-    document.getElementById('msfSuccess').style.display='block';
+  try{
+    await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),mode:'no-cors'});
+    document.querySelectorAll('.step').forEach(function(s){s.style.display='none';});
+    document.getElementById('progressWrap').style.display='none';
+    document.getElementById('successMsg').style.display='block';
     window.scrollTo({top:0,behavior:'smooth'});
-  } catch(err) {
+  }catch(err){
     btn.disabled=false; txt.style.display='block'; spin.style.display='none';
-    alert('Fehler beim Absenden. Bitte versuche es erneut oder kontaktiere uns direkt.');
+    alert('Fehler beim Absenden. Bitte versuche es erneut.');
   }
-});
-
-// Progress bar update on scroll
-var sections = document.querySelectorAll('.section');
-var heights = ['0%','25%','50%','75%','100%'];
-
-function updateProgress() {
-  var scrollY = window.scrollY || window.pageYOffset;
-  var windowH = window.innerHeight;
-  var docH = document.documentElement.scrollHeight;
-  var current = 0;
-
-  sections.forEach(function(s, i) {
-    if(scrollY >= s.offsetTop - windowH * 0.5) current = i;
-  });
-
-  // If at bottom of page, mark all done except last which stays active
-  var atBottom = (scrollY + windowH) >= (docH - 50);
-  if(atBottom) current = 4;
-
-  for(var i=0;i<5;i++) {
-    var step = document.getElementById('ps'+(i+1));
-    if(!step) return;
-    if(atBottom) {
-      step.className = 'p-step' + (i < 4 ? ' done' : ' active');
-    } else {
-      step.className = 'p-step' + (i < current ? ' done' : i === current ? ' active' : '');
-    }
-  }
-  document.getElementById('progressLine').style.height = heights[Math.min(current, 4)];
 }
 
-window.addEventListener('scroll', updateProgress);
-updateProgress();
-
-// Geburtsdatum Auto-Format: TT.MM.JJJJ
-document.getElementById('msfGeburt').addEventListener('input', function(e) {
-  var v = e.target.value.replace(/\D/g,'');
-  if(v.length >= 3 && v.length <= 4) v = v.slice(0,2) + '.' + v.slice(2);
-  else if(v.length >= 5) v = v.slice(0,2) + '.' + v.slice(2,4) + '.' + v.slice(4,8);
-  e.target.value = v;
+document.getElementById('geburtsdatum').addEventListener('input',function(e){
+  var v=e.target.value.replace(/\D/g,'');
+  if(v.length>=3&&v.length<=4)v=v.slice(0,2)+'.'+v.slice(2);
+  else if(v.length>=5)v=v.slice(0,2)+'.'+v.slice(2,4)+'.'+v.slice(4,8);
+  e.target.value=v;
 });
 
-// IBAN Auto-Format: DE00 0000 0000 0000 0000 00
-document.getElementById('msfIban').addEventListener('input', function(e) {
-  var v = e.target.value.replace(/\s/g,'').toUpperCase().slice(0,22);
-  var parts = [];
-  if(v.length > 0)  parts.push(v.slice(0,4));
-  if(v.length > 4)  parts.push(v.slice(4,8));
-  if(v.length > 8)  parts.push(v.slice(8,12));
-  if(v.length > 12) parts.push(v.slice(12,16));
-  if(v.length > 16) parts.push(v.slice(16,20));
-  if(v.length > 20) parts.push(v.slice(20,22));
-  e.target.value = parts.join(' ');
+document.getElementById('iban').addEventListener('input',function(e){
+  var v=e.target.value.replace(/\s/g,'').toUpperCase().slice(0,22);
+  var parts=[];
+  if(v.length>0)parts.push(v.slice(0,4));
+  if(v.length>4)parts.push(v.slice(4,8));
+  if(v.length>8)parts.push(v.slice(8,12));
+  if(v.length>12)parts.push(v.slice(12,16));
+  if(v.length>16)parts.push(v.slice(16,20));
+  if(v.length>20)parts.push(v.slice(20,22));
+  e.target.value=parts.join(' ');
 });
 </script>
-
 </body>
 </html>
