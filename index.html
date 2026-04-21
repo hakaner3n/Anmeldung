@@ -9,10 +9,10 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{overflow-x:hidden;width:100%;position:relative}
 html{height:100%}
-body{min-height:100%;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+body{min-height:100%;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior:none}
 body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;color:#2c2c2c;line-height:1.6;padding:0 0 60px;overflow-x:hidden;-webkit-text-size-adjust:100%}
 
-.form-wrap{max-width:640px;margin:0 auto;padding:0 20px}
+.form-wrap{max-width:640px;margin:0 auto;padding:0 20px;overflow:visible}
 
 .form-header{text-align:center;padding:36px 0 28px;border-bottom:1px solid #ccd8da;margin-bottom:28px}
 .form-header .icon{width:56px;height:56px;border-radius:50%;background:#e8f4f6;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
