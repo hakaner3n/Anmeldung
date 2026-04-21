@@ -2,15 +2,15 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0">
 <title>Verbindliche Anmeldung – Musikschule Hückelhoven</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{overflow-x:hidden}body{overflow-x:hidden;overflow-y:scroll}
+html{overflow-x:hidden;max-width:100%}body{overflow-x:hidden;overflow-y:scroll;max-width:100%;position:relative}
 body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;color:#2c2c2c;line-height:1.6;padding:0 0 60px;overflow-x:hidden;-webkit-text-size-adjust:100%}
 
-.form-wrap{max-width:100%;margin:0 auto;padding:0 12px;overflow:visible}
+.form-wrap{width:100%;max-width:100%;margin:0;padding:0 12px;overflow:visible;box-sizing:border-box}
 
 .form-header{text-align:center;padding:36px 0 28px;border-bottom:1px solid #ccd8da;margin-bottom:28px}
 .form-header .icon{width:56px;height:56px;border-radius:50%;background:#e8f4f6;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
@@ -83,6 +83,15 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
 .submit-btn:hover{background:#144d57}
 .submit-btn:disabled{background:#aaa;cursor:not-allowed}
 .submit-note{font-size:12px;color:#aaa;margin-top:10px}
+.progress-wrap{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:1000;background:#fff;border:1px solid #e8e8e8;border-right:none;border-radius:10px 0 0 10px;padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:0}
+.progress-spacer{display:none}
+.progress-steps{display:flex;flex-direction:column;align-items:center;position:relative;gap:0}
+.progress-steps::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:#e8f4f6;z-index:0;transform:translateX(-50%)}
+.progress-line{position:absolute;left:50%;top:0;width:2px;background:#1a5f6a;z-index:1;transform:translateX(-50%);transition:height 0.4s ease}
+.p-step{width:26px;height:26px;border-radius:50%;border:2px solid #ccd8da;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#ccd8da;z-index:2;transition:all 0.3s;flex-shrink:0;margin:6px 0}
+.p-step.active{border-color:#1a5f6a;color:#1a5f6a}
+.p-step.done{border-color:#1a5f6a;background:#1a5f6a;color:#fff}
+.progress-label{display:none}
 .spinner{display:none;width:20px;height:20px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -120,6 +129,19 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
     </div>
   </div>
 
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-steps">
+      <div class="p-step done" id="ps1">1</div>
+      <div class="p-step active" id="ps2">2</div>
+      <div class="p-step" id="ps3">3</div>
+      <div class="p-step" id="ps4">4</div>
+      <div class="p-step" id="ps5">5</div>
+      <div class="progress-line" id="progressLine" style="width:25%"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">Schritt 1 von 5 · Kursstart</div>
+  </div>
+
+  <div class="progress-spacer"></div>
   <form id="msfForm" novalidate>
 
     <div class="section">
@@ -183,6 +205,12 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
       </div>
       <div class="field-grid cols1">
         <div class="field">
+          <label>Erziehungsberechtigter (falls unter 18)</label>
+          <input type="text" name="erziehungsber" id="msfErziehung" placeholder="Vor- und Nachname">
+        </div>
+      </div>
+      <div class="field-grid cols1">
+        <div class="field">
           <label>E-Mail <span class="star">*</span></label>
           <input type="email" name="email" id="msfEmail" placeholder="deine@email.de">
           <span class="field-err" id="msfEmailErr">Bitte gültige E-Mail eingeben.</span>
@@ -212,12 +240,7 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
           <span class="field-err" id="msfOrtErr">Bitte Ort eingeben.</span>
         </div>
       </div>
-      <div class="field-grid cols1" style="margin-top:12px">
-        <div class="field">
-          <label>Erziehungsberechtigter (falls unter 18)</label>
-          <textarea name="erziehungsber" placeholder="Vor- und Nachname eines Erziehungsberechtigten"></textarea>
-        </div>
-      </div>
+
     </div>
 
     <div class="section">
@@ -230,15 +253,16 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
         </div>
         <div class="field">
           <label>IBAN <span class="star">*</span></label>
-          <input type="text" name="iban" id="msfIban" placeholder="DE00 0000 0000 0000 0000 00" inputmode="text" maxlength="22">
+          <input type="text" name="iban" id="msfIban" placeholder="DE00 0000 0000 0000 0000 00" inputmode="text" maxlength="27">
           <span class="field-err" id="msfIbanErr">Bitte IBAN eingeben.</span>
+          <span style="font-size:11px;color:#aaa;margin-top:2px">&#128274; SSL-verschlüsselt &amp; sicher</span>
         </div>
       </div>
       <div style="margin-top:14px">
         <label class="check-wrap" onclick="msfToggleCheck(this)">
           <input type="checkbox" name="sepa" id="msfSepa">
           <div class="checkmark"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><polyline points="2,7 5.5,10.5 12,3" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <span class="check-text">Hiermit ermächtige ich die Musikschule Hückelhoven, den monatlich fälligen Betrag per SEPA-Lastschrift einzuziehen. Gläubiger-ID: <strong>DE64ZZZ00002060164</strong></span>
+          <span class="check-text">Ich ermächtige die Musikschule Hückelhoven zur monatlichen Abbuchung per Lastschrift. Die erste Abbuchung erfolgt zum 01. des Unterrichtsbeginns. Gläubiger-ID: <strong>DE64ZZZ00002060164</strong></span>
         </label>
         <span class="check-err" id="msfSepaErr">Bitte SEPA-Mandat bestätigen.</span>
         <label class="check-wrap" onclick="msfToggleCheck(this)" style="margin-top:8px">
@@ -251,24 +275,16 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
     </div>
 
     <div class="section">
-      <p class="section-label">5 · Wie bist Du auf uns aufmerksam geworden? <span class="star">*</span></p>
-      <div class="quelle-grid">
-        <div class="quelle-opt" onclick="selectQuelle(this,'YouTube')"><div class="quelle-dot"><div class="quelle-inner"></div></div>YouTube</div>
-        <div class="quelle-opt" onclick="selectQuelle(this,'Google')"><div class="quelle-dot"><div class="quelle-inner"></div></div>Google</div>
-        <div class="quelle-opt" onclick="selectQuelle(this,'TikTok')"><div class="quelle-dot"><div class="quelle-inner"></div></div>TikTok</div>
-        <div class="quelle-opt" onclick="selectQuelle(this,'Facebook')"><div class="quelle-dot"><div class="quelle-inner"></div></div>Facebook</div>
-        <div class="quelle-opt" onclick="selectQuelle(this,'Instagram')"><div class="quelle-dot"><div class="quelle-inner"></div></div>Instagram</div>
-        <div class="quelle-opt" onclick="selectQuelle(this,'Ebay Kleinanzeigen')"><div class="quelle-dot"><div class="quelle-inner"></div></div>Ebay Kleinanzeigen</div>
-        <div class="quelle-opt" onclick="selectQuelle(this,'Sonstige')"><div class="quelle-dot"><div class="quelle-inner"></div></div>Sonstige</div>
+      <p class="section-label">5 · Wie bist Du auf uns aufmerksam geworden?</p>
+      <div class="field">
+        <textarea name="quelle" id="msfQuelle" placeholder="z.B. YouTube, Google, Instagram, Empfehlung von Freunden ..."></textarea>
       </div>
-      <span class="quelle-err" id="msfQuelleErr">Bitte eine Option auswählen.</span>
-      <input type="hidden" name="quelle" id="msfQuelle" value="">
     </div>
 
     <div class="submit-wrap">
       <p style="font-size:12px;color:#aaa;margin-bottom:12px">Es gilt unsere <a href="#" style="color:#1a5f6a">Datenschutzerklärung</a> · SSL-verschlüsselt</p>
       <button type="submit" class="submit-btn" id="msfBtn">
-        <span id="msfBtnTxt">Anmeldung absenden</span>
+        <span id="msfBtnTxt">Jetzt Platz sichern</span>
         <div class="spinner" id="msfSpinner"></div>
       </button>
     </div>
@@ -277,8 +293,9 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
 
   <div class="success" id="msfSuccess">
     <span class="tick">&#10003;</span>
-    <h2>Vielen Dank für Deine Anmeldung!</h2>
-    <p>Du erhältst in Kürze eine Bestätigungs-E-Mail mit allen Unterlagen.</p>
+    <h2>Dein Platz ist gesichert!</h2>
+    <p style="font-size:15px;color:#144d57;font-weight:600;margin-bottom:8px">Du hörst innerhalb von 24 Stunden von uns.</p>
+    <p style="font-size:14px;color:#666">Wir haben Dir eine Bestätigungs-E-Mail mit allen Unterlagen geschickt. Bitte prüfe auch Deinen Spam-Ordner.</p>
   </div>
 
 </div>
@@ -290,12 +307,6 @@ function selectLeih(el, val) {
   document.querySelectorAll('#leih1,#leih2').forEach(function(o){ o.classList.remove('selected'); });
   el.classList.add('selected');
   document.getElementById('msfKurs').value = val;
-}
-
-function selectQuelle(el, val) {
-  document.querySelectorAll('.quelle-opt').forEach(function(o){ o.classList.remove('selected'); });
-  el.classList.add('selected');
-  document.getElementById('msfQuelle').value = val;
 }
 
 function msfToggleCheck(label) {
@@ -347,8 +358,6 @@ function validate() {
   var agb = document.getElementById('msfAgb').checked;
   showErr('msfAgbErr',!agb); if(!agb) ok=false;
 
-  var quelle = document.getElementById('msfQuelle').value;
-  showErr('msfQuelleErr',!quelle); if(!quelle) ok=false;
 
   return ok;
 }
@@ -370,12 +379,12 @@ document.getElementById('msfForm').addEventListener('submit', async function(e){
     strasse:       document.getElementById('msfStrasse').value.trim(),
     plz:           document.getElementById('msfPlz').value.trim(),
     ort:           document.getElementById('msfOrt').value.trim(),
-    erziehungsber: document.querySelector('textarea[name="erziehungsber"]').value.trim(),
+    erziehungsber: document.getElementById('msfErziehung') ? document.getElementById('msfErziehung').value.trim() : '',
     telefon:       document.getElementById('msfTelefon').value.trim(),
     email:         document.getElementById('msfEmail').value.trim(),
     kontoinhaber:  document.getElementById('msfKonto').value.trim(),
     iban:          document.getElementById('msfIban').value.trim(),
-    quelle:        document.getElementById('msfQuelle').value,
+    quelle:        document.getElementById('msfQuelle').value.trim(),
     zeitstempel:   new Date().toISOString()
   };
 
@@ -390,6 +399,39 @@ document.getElementById('msfForm').addEventListener('submit', async function(e){
   }
 });
 
+// Progress bar update on scroll
+var sections = document.querySelectorAll('.section');
+var heights = ['0%','25%','50%','75%','100%'];
+
+function updateProgress() {
+  var scrollY = window.scrollY || window.pageYOffset;
+  var windowH = window.innerHeight;
+  var docH = document.documentElement.scrollHeight;
+  var current = 0;
+
+  sections.forEach(function(s, i) {
+    if(scrollY >= s.offsetTop - windowH * 0.5) current = i;
+  });
+
+  // If at bottom of page, mark all done except last which stays active
+  var atBottom = (scrollY + windowH) >= (docH - 50);
+  if(atBottom) current = 4;
+
+  for(var i=0;i<5;i++) {
+    var step = document.getElementById('ps'+(i+1));
+    if(!step) return;
+    if(atBottom) {
+      step.className = 'p-step' + (i < 4 ? ' done' : ' active');
+    } else {
+      step.className = 'p-step' + (i < current ? ' done' : i === current ? ' active' : '');
+    }
+  }
+  document.getElementById('progressLine').style.height = heights[Math.min(current, 4)];
+}
+
+window.addEventListener('scroll', updateProgress);
+updateProgress();
+
 // Geburtsdatum Auto-Format: TT.MM.JJJJ
 document.getElementById('msfGeburt').addEventListener('input', function(e) {
   var v = e.target.value.replace(/\D/g,'');
@@ -400,9 +442,15 @@ document.getElementById('msfGeburt').addEventListener('input', function(e) {
 
 // IBAN Auto-Format: DE00 0000 0000 0000 0000 00
 document.getElementById('msfIban').addEventListener('input', function(e) {
-  var v = e.target.value.replace(/\s/g,'').toUpperCase();
-  var formatted = v.match(/.{1,4}/g);
-  e.target.value = formatted ? formatted.join(' ') : v;
+  var v = e.target.value.replace(/\s/g,'').toUpperCase().slice(0,22);
+  var parts = [];
+  if(v.length > 0)  parts.push(v.slice(0,4));
+  if(v.length > 4)  parts.push(v.slice(4,8));
+  if(v.length > 8)  parts.push(v.slice(8,12));
+  if(v.length > 12) parts.push(v.slice(12,16));
+  if(v.length > 16) parts.push(v.slice(16,20));
+  if(v.length > 20) parts.push(v.slice(20,22));
+  e.target.value = parts.join(' ');
 });
 </script>
 
