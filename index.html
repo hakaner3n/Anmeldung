@@ -7,7 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{overflow-x:hidden;width:100%;position:relative;-webkit-overflow-scrolling:touch}
+html,body{overflow-x:hidden;width:100%;position:relative}
+html{height:100%}
+body{min-height:100%;-webkit-overflow-scrolling:touch;touch-action:pan-y}
 body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;color:#2c2c2c;line-height:1.6;padding:0 0 60px;overflow-x:hidden;-webkit-text-size-adjust:100%}
 
 .form-wrap{max-width:640px;margin:0 auto;padding:0 20px}
@@ -24,7 +26,7 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
 .section{background:#fff;border:1px solid #ccd8da;border-radius:10px;padding:22px 24px;margin-bottom:16px}
 .section-label{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px}
 
-.kurs-option{border:1.5px solid #ccd8da;border-radius:8px;padding:14px 16px;margin-bottom:8px;cursor:pointer;background:#fff;transition:all 0.15s;display:flex;align-items:center;gap:14px;user-select:none}
+.kurs-option{touch-action:manipulation;border:1.5px solid #ccd8da;border-radius:8px;padding:14px 16px;margin-bottom:8px;cursor:pointer;background:#fff;transition:all 0.15s;display:flex;align-items:center;gap:14px;user-select:none}
 .kurs-option:last-child{margin-bottom:0}
 .kurs-option.selected{border-color:#1a5f6a;background:#e8f4f6}
 .kurs-option.fixed{cursor:default}
@@ -55,7 +57,7 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
 .field textarea{min-height:70px;resize:vertical}
 .field-err{display:none;color:#c0392b;font-size:12px}
 
-.check-wrap{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;border:1.5px solid #ccd8da;border-radius:8px;cursor:pointer;margin-bottom:8px;background:#fff;transition:all 0.15s}
+.check-wrap{touch-action:manipulation;display:flex;align-items:flex-start;gap:12px;padding:13px 15px;border:1.5px solid #ccd8da;border-radius:8px;cursor:pointer;margin-bottom:8px;background:#fff;transition:all 0.15s}
 .check-wrap:last-of-type{margin-bottom:0}
 .check-wrap:hover{border-color:#1a5f6a;background:#f0f9fa}
 .check-wrap.checked{border-color:#1a5f6a;background:#e8f4f6}
@@ -69,7 +71,7 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
 .check-err{display:none;color:#c0392b;font-size:12px;margin-top:4px}
 
 .quelle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
-.quelle-opt{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1.5px solid #ccd8da;border-radius:6px;cursor:pointer;font-size:14px;background:#fff;transition:all 0.15s;user-select:none}
+.quelle-opt{touch-action:manipulation;display:flex;align-items:center;gap:8px;padding:9px 12px;border:1.5px solid #ccd8da;border-radius:6px;cursor:pointer;font-size:14px;background:#fff;transition:all 0.15s;user-select:none}
 .quelle-opt:hover{border-color:#1a5f6a;background:#f0f9fa}
 .quelle-opt.selected{border-color:#1a5f6a;background:#e8f4f6;color:#085041;font-weight:600}
 .quelle-dot{width:16px;height:16px;border-radius:50%;border:2px solid #ccd8da;flex-shrink:0;display:flex;align-items:center;justify-content:center}
@@ -79,7 +81,7 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
 .quelle-err{display:none;color:#c0392b;font-size:12px;margin-top:6px}
 
 .submit-wrap{text-align:center;margin-top:8px}
-.submit-btn{display:inline-block;background:#1a5f6a;color:#fff;border:none;padding:15px 48px;font-family:'Source Sans 3',sans-serif;font-size:16px;font-weight:600;border-radius:7px;cursor:pointer;width:100%;max-width:360px;transition:background 0.15s}
+.submit-btn{touch-action:manipulation;display:inline-block;background:#1a5f6a;color:#fff;border:none;padding:15px 48px;font-family:'Source Sans 3',sans-serif;font-size:16px;font-weight:600;border-radius:7px;cursor:pointer;width:100%;max-width:360px;transition:background 0.15s}
 .submit-btn:hover{background:#144d57}
 .submit-btn:disabled{background:#aaa;cursor:not-allowed}
 .submit-note{font-size:12px;color:#aaa;margin-top:10px}
