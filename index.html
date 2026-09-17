@@ -66,7 +66,7 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
 .summary-title{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px}
 .summary-row{display:flex;justify-content:space-between;margin-bottom:4px}
 .summary-row span:first-child{font-size:13px;color:#888}
-.summary-row span:last-child{font-size:13px;font-weight:500;color:#2c2c2c}
+.summary-row span:last-child{font-size:13px;font-weight:500;color:#2c2c2c;text-align:right;margin-left:10px}
 .summary-divider{border:none;border-top:1px solid #e8f4f6;margin:8px 0}
 .summary-total{display:flex;justify-content:space-between;align-items:center}
 .summary-total span:first-child{font-size:13px;font-weight:600;color:#2c2c2c}
@@ -85,6 +85,8 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
 .success h2{font-family:'Playfair Display',serif;color:#144d57;font-size:1.3rem;margin-bottom:8px}
 .success .success-sub{font-size:15px;color:#1a5f6a;font-weight:600;margin-bottom:6px}
 .success p{font-size:14px;color:#666}
+.kurs-loading{font-size:13px;color:#888;padding:10px 0}
+.kurs-loaderr{font-size:13px;color:#c0392b;padding:10px 0}
 @media(max-width:400px){.grid2{grid-template-columns:1fr}.trust-row{gap:12px}}
 </style>
 </head>
@@ -97,7 +99,7 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
     </div>
     <p class="school">Musikschule Hückelhoven</p>
     <h1>Verbindliche Anmeldung</h1>
-    <p class="sub">Bağlama-Unterricht · Düsseldorf</p>
+    <p class="sub">Bağlama-Unterricht</p>
     <div class="trust-row">
       <span class="trust-item">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a5f6a" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -123,32 +125,28 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
   <div id="step1" class="step active">
     <div class="card">
       <p class="card-title">Kursstart</p>
-      <div class="kurs-opt fixed sel" style="margin-bottom:16px">
-        <div class="rdot"><div class="rdot-inner"></div></div>
-        <div class="kurs-info">
-          <div class="kurs-title">Sonntag, 03. Mai 2026</div>
-          <div class="kurs-sub">13:50–15:10 Uhr · Kirchstr. 20, 40227 Düsseldorf</div>
+      <div id="kursOptions"><p class="kurs-loading">Kurse werden geladen...</p></div>
+      <div id="leihSection" style="display:none">
+        <p class="card-title">Leihinstrument</p>
+        <div class="kurs-opt sel" id="leih1" onclick="selLeih('leih1','leih2','ohne')">
+          <div class="rdot"><div class="rdot-inner"></div></div>
+          <div class="kurs-info">
+            <div class="kurs-title">Ohne Leihinstrument</div>
+            <div class="kurs-sub">Du bringst deine eigene Bağlama mit</div>
+          </div>
+          <div class="badge" id="leih1Badge">68 € / mtl.</div>
         </div>
-      </div>
-      <p class="card-title">Leihinstrument</p>
-      <div class="kurs-opt sel" id="leih1" onclick="selLeih('leih1','leih2','ohne',68)">
-        <div class="rdot"><div class="rdot-inner"></div></div>
-        <div class="kurs-info">
-          <div class="kurs-title">Ohne Leihinstrument</div>
-          <div class="kurs-sub">Du bringst deine eigene Bağlama mit</div>
+        <div class="kurs-opt" id="leih2" onclick="selLeih('leih2','leih1','mit')">
+          <div class="rdot"><div class="rdot-inner"></div></div>
+          <div class="kurs-info">
+            <div class="kurs-title">Mit Leihinstrument</div>
+            <div class="kurs-sub">Wir leihen dir eine Bağlama</div>
+          </div>
+          <div class="badge" id="leih2Badge">80 € / mtl.</div>
         </div>
-        <div class="badge">68 € / mtl.</div>
-      </div>
-      <div class="kurs-opt" id="leih2" onclick="selLeih('leih2','leih1','mit',80)">
-        <div class="rdot"><div class="rdot-inner"></div></div>
-        <div class="kurs-info">
-          <div class="kurs-title">Mit Leihinstrument</div>
-          <div class="kurs-sub">Wir leihen dir eine Bağlama</div>
-        </div>
-        <div class="badge">80 € / mtl.</div>
       </div>
       <div class="btn-row">
-        <button class="btn-next" style="flex:1" onclick="goTo(2)">Weiter →</button>
+        <button class="btn-next" style="flex:1" id="step1NextBtn" onclick="goTo(2)">Weiter →</button>
       </div>
     </div>
   </div>
@@ -275,9 +273,9 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
       <p class="card-title">Zusammenfassung & AGB</p>
       <div class="summary-box">
         <p class="summary-title">Deine Auswahl</p>
-        <div class="summary-row"><span>Kursstart</span><span>So. 03. Mai 2026</span></div>
-        <div class="summary-row"><span>Uhrzeit</span><span>13:50–15:10 Uhr</span></div>
-        <div class="summary-row"><span>Ort</span><span>Kirchstr. 20, Düsseldorf</span></div>
+        <div class="summary-row"><span>Kursstart</span><span id="summDatum">–</span></div>
+        <div class="summary-row"><span>Uhrzeit</span><span id="summZeit">–</span></div>
+        <div class="summary-row"><span>Ort</span><span id="summOrtKurs">–</span></div>
         <div class="summary-row"><span>Leihinstrument</span><span id="summLeih">Ohne</span></div>
         <hr class="summary-divider">
         <div class="summary-total"><span>Monatlich</span><span id="summPreis">68 € / mtl.</span></div>
@@ -317,12 +315,16 @@ body{background:#f7fafb;font-family:'Source Sans 3',sans-serif;font-size:16px;co
 </div>
 <script>
 var WEBHOOK='https://hook.eu1.make.com/ncu8n26ptg7oq3a7hy82hfah68r828zd';
+var KURSE_CSV_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vRd90MC1vokl1CjQ4ECkPpnJ3aoD0D5VRMf0f_h5dLo4I8R0JF7VBRhGglwFIOAXK7AL4XGL-9dIt5W/pub?gid=1314915690&single=true&output=csv';
+var kurse=[];
+var selectedKurs=null;
 var leihTyp='ohne';
 var leihPreis=68;
 var stepLabels=['Kursstart & Leihinstrument','Angaben zur Person','Kontakt & Adresse','Bankdaten & SEPA','Zusammenfassung & AGB'];
 var stepPcts=['20%','40%','60%','80%','100%'];
 
 function goTo(n){
+  if(n===2 && !selectedKurs){alert('Bitte einen Kurs auswählen.');return;}
   document.querySelectorAll('.step').forEach(function(s){s.classList.remove('active');});
   document.getElementById('step'+n).classList.add('active');
   document.getElementById('progLabel').textContent='Schritt '+n+' von 5 · '+stepLabels[n-1];
@@ -331,12 +333,108 @@ function goTo(n){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function selLeih(selId,otherId,typ,preis){
+function parseCSV(text){
+  var rows=[],row=[],field='',inQuotes=false;
+  for(var i=0;i<text.length;i++){
+    var c=text[i];
+    if(inQuotes){
+      if(c==='"'){ if(text[i+1]==='"'){field+='"';i++;} else {inQuotes=false;} }
+      else field+=c;
+    } else {
+      if(c==='"') inQuotes=true;
+      else if(c===','){row.push(field);field='';}
+      else if(c==='\n'||c==='\r'){
+        if(c==='\r'&&text[i+1]==='\n')i++;
+        row.push(field);field='';rows.push(row);row=[];
+      } else field+=c;
+    }
+  }
+  if(field.length>0||row.length>0){row.push(field);rows.push(row);}
+  return rows.filter(function(r){return !(r.length===1&&r[0]==='');});
+}
+
+function parseDatum(d){
+  var p=d.split('/');
+  return new Date(2000+parseInt(p[2],10), parseInt(p[1],10)-1, parseInt(p[0],10));
+}
+
+function formatDatumKurz(d){
+  var dt=parseDatum(d);
+  var tage=['So','Mo','Di','Mi','Do','Fr','Sa'];
+  var dd=String(dt.getDate()).padStart(2,'0');
+  var mm=String(dt.getMonth()+1).padStart(2,'0');
+  return tage[dt.getDay()]+'. '+dd+'.'+mm+'.'+dt.getFullYear();
+}
+
+function loadKurse(){
+  fetch(KURSE_CSV_URL).then(function(r){return r.text();}).then(function(text){
+    var rows=parseCSV(text);
+    if(rows.length<2)throw new Error('keine Kursdaten');
+    var header=rows[0].map(function(h){return h.trim();});
+    kurse=rows.slice(1).map(function(r){
+      var obj={};
+      header.forEach(function(h,idx){obj[h]=(r[idx]||'').trim();});
+      return obj;
+    }).filter(function(k){return k.Aktiv==='Ja' && k.Standort;});
+    renderKursOptions();
+  }).catch(function(err){
+    document.getElementById('kursOptions').innerHTML='<p class="kurs-loaderr">Kurse konnten nicht geladen werden. Bitte Seite neu laden oder Musikschule kontaktieren.</p>';
+    document.getElementById('step1NextBtn').disabled=true;
+  });
+}
+
+function renderKursOptions(){
+  var container=document.getElementById('kursOptions');
+  if(kurse.length===0){
+    container.innerHTML='<p class="kurs-loaderr">Aktuell ist kein Kurs zur Anmeldung geöffnet.</p>';
+    document.getElementById('step1NextBtn').disabled=true;
+    return;
+  }
+  container.innerHTML='';
+  kurse.forEach(function(k,i){
+    var div=document.createElement('div');
+    div.className='kurs-opt'+(i===0?' sel':'');
+    div.id='kursOpt'+i;
+    div.addEventListener('click',function(){selectKurs(i);});
+    div.innerHTML='<div class="rdot"><div class="rdot-inner"></div></div>'+
+      '<div class="kurs-info">'+
+        '<div class="kurs-title">'+k.Standort+' · '+formatDatumKurz(k.Datum)+'</div>'+
+        '<div class="kurs-sub">'+k.Uhrzeit+' Uhr · '+k.Adresse+'</div>'+
+      '</div>';
+    container.appendChild(div);
+  });
+  selectKurs(0);
+}
+
+function selectKurs(i){
+  selectedKurs=kurse[i];
+  document.querySelectorAll('#kursOptions .kurs-opt').forEach(function(el){el.classList.remove('sel');});
+  document.getElementById('kursOpt'+i).classList.add('sel');
+
+  var leihVerf=selectedKurs.Leih_verfuegbar==='Ja';
+  document.getElementById('leihSection').style.display=leihVerf?'block':'none';
+  if(leihVerf){
+    document.getElementById('leih1Badge').textContent=selectedKurs.Preis_ohne+' € / mtl.';
+    document.getElementById('leih2Badge').textContent=selectedKurs.Preis_mit+' € / mtl.';
+    selLeih('leih1','leih2','ohne');
+  } else {
+    leihTyp='ohne';
+    leihPreis=Number(selectedKurs.Preis_ohne);
+    document.getElementById('summLeih').textContent='—';
+    document.getElementById('summPreis').textContent=leihPreis+' € / mtl.';
+  }
+  document.getElementById('summDatum').textContent=formatDatumKurz(selectedKurs.Datum);
+  document.getElementById('summZeit').textContent=selectedKurs.Uhrzeit+' Uhr';
+  document.getElementById('summOrtKurs').textContent=selectedKurs.Adresse;
+}
+
+function selLeih(selId,otherId,typ){
   document.getElementById(selId).classList.add('sel');
   document.getElementById(otherId).classList.remove('sel');
-  leihTyp=typ; leihPreis=preis;
+  leihTyp=typ;
+  leihPreis=Number(typ==='mit'?selectedKurs.Preis_mit:selectedKurs.Preis_ohne);
   document.getElementById('summLeih').textContent=typ==='mit'?'Mit Leihinstrument':'Ohne Leihinstrument';
-  document.getElementById('summPreis').textContent=preis+' € / mtl.';
+  document.getElementById('summPreis').textContent=leihPreis+' € / mtl.';
 }
 
 function toggleCheck(rowId,cbId){
@@ -383,6 +481,7 @@ function validateStep4(){
 }
 
 async function submitForm(){
+  if(!selectedKurs){alert('Bitte einen Kurs auswählen.');return;}
   var agb=document.getElementById('agbCb').checked;
   showErr('agbErr',!agb);
   if(!agb)return;
@@ -390,7 +489,7 @@ async function submitForm(){
   var txt=document.getElementById('submitTxt');
   var spin=document.getElementById('submitSpinner');
   btn.disabled=true; txt.style.display='none'; spin.style.display='block';
-  var kursStr="D'dorf | 03/05/26 | 13:50-15:10 | "+leihTyp+" Leih | "+leihPreis;
+  var kursStr=selectedKurs.Standort+" | "+selectedKurs.Datum+" | "+selectedKurs.Uhrzeit+" | "+leihTyp+" Leih | "+leihPreis+" | "+selectedKurs.Adresse;
   var data={
     kurs:kursStr,
     vorname:document.getElementById('vorname').value.trim(),
@@ -437,6 +536,8 @@ document.getElementById('iban').addEventListener('input',function(e){
   if(v.length>20)parts.push(v.slice(20,22));
   e.target.value=parts.join(' ');
 });
+
+loadKurse();
 </script>
 </body>
 </html>
