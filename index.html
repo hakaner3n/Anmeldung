@@ -372,6 +372,17 @@ function formatDatumKurz(d){
   return tage[dt.getDay()]+'. '+dd+'.'+mm+'.'+dt.getFullYear();
 }
 
+function normalizeOrt(s){
+  return (s||'').toLowerCase()
+    .replace(/ü/g,'ue').replace(/ö/g,'oe').replace(/ä/g,'ae').replace(/ß/g,'ss')
+    .replace(/[^a-z0-9]/g,'');
+}
+
+function getLockedOrt(){
+  var params=new URLSearchParams(window.location.search);
+  return params.get('ort');
+}
+
 function loadKurse(){
   fetch(KURSE_CSV_URL).then(function(r){return r.text();}).then(function(text){
     var rows=parseCSV(text);
@@ -382,14 +393,19 @@ function loadKurse(){
       header.forEach(function(h,idx){obj[h]=(r[idx]||'').trim();});
       return obj;
     }).filter(function(k){return k.Aktiv==='Ja' && k.Standort;});
-    renderKursOptions();
+    var lockedOrt=getLockedOrt();
+    if(lockedOrt){
+      var norm=normalizeOrt(lockedOrt);
+      kurse=kurse.filter(function(k){return normalizeOrt(k.Standort)===norm;});
+    }
+    renderKursOptions(!!lockedOrt);
   }).catch(function(err){
     document.getElementById('kursOptions').innerHTML='<p class="kurs-loaderr">Kurse konnten nicht geladen werden. Bitte Seite neu laden oder Musikschule kontaktieren.</p>';
     document.getElementById('step1NextBtn').disabled=true;
   });
 }
 
-function renderKursOptions(){
+function renderKursOptions(locked){
   var container=document.getElementById('kursOptions');
   if(kurse.length===0){
     container.innerHTML='<p class="kurs-loaderr">Aktuell ist kein Kurs zur Anmeldung geöffnet.</p>';
@@ -397,11 +413,14 @@ function renderKursOptions(){
     return;
   }
   container.innerHTML='';
+  var fixed=locked && kurse.length===1;
   kurse.forEach(function(k,i){
     var div=document.createElement('div');
-    div.className='kurs-opt'+(i===0?' sel':'');
+    div.className='kurs-opt'+(i===0?' sel':'')+(fixed?' fixed':'');
     div.id='kursOpt'+i;
-    div.addEventListener('click',function(){selectKurs(i);});
+    if(!fixed){
+      div.addEventListener('click',function(){selectKurs(i);});
+    }
     div.innerHTML='<div class="rdot"><div class="rdot-inner"></div></div>'+
       '<div class="kurs-info">'+
         '<div class="kurs-title">'+k.Standort+' · '+formatDatumKurz(k.Datum)+'</div>'+
